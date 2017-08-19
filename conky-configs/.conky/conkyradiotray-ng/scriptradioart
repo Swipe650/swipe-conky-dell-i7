@@ -82,9 +82,9 @@ case "$station" in
 ;;
     "$talkradio" )
         convert ~/.config/radiotray-ng/bookmark_icons/talkradio -resize 130 ~/.config/radiotray-ng/bookmark_icons/icon
-;;
-    "$plan_rock" )
-        convert  ~/.config/radiotray-ng/bookmark_icons/planrock -resize 130 ~/.config/radiotray-ng/bookmark_icons/icon
+# ;;
+#     "$plan_rock" )
+#         convert  ~/.config/radiotray-ng/bookmark_icons/planrock -resize 130 ~/.config/radiotray-ng/bookmark_icons/icon
 ;;
     "$ragga" )
         convert ~/.config/radiotray-ng/bookmark_icons/ragga -resize 130 ~/.config/radiotray-ng/bookmark_icons/icon

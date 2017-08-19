@@ -118,7 +118,7 @@ case "$station" in
         then
         echo "$title" | fold -s -w80 > ~/.conky/conkyradiotray-ng/artist_title.txt
         wget -qO miniatureGoogleImage "$linkMiniature"
-        convert ~/bin/miniatureGoogleImage -resize 130 ~/.config/radiotray-ng/bookmark_icons/icon
+        convert ~/miniatureGoogleImage -resize 130 ~/.config/radiotray-ng/bookmark_icons/icon
         fi
 ;;
 esac

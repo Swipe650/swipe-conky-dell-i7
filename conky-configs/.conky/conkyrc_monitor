@@ -38,9 +38,7 @@ override_utf8_locale yes
 #use_spacer no
  
 TEXT
-${voffset -4}${alignc -10}${font Open Sans:Bold:size=20}${color #FFC433}Arch ${color}Linux$font$color
-#${alignc -10}${image ~/.conky/ant -p 5,10 -s 40x40 -f 1}${font Open Sans:size=20}${color #FFC433}Arch ${color}Linux$font$color
-
+${voffset -4}${alignc -10}${font Open Sans:Bold:size=20}${color #FFC433}Arch ${color }Linux${if_running openvpn}${alignc -10}${image ~/.conky/vpn.png -p 1,0 -s 30x30 -f 1}$else$endif
 ${voffset -14}${color #FFC433}${font Open Sans:Bold:size=10}DATE ${voffset -1}${hr 6}$color$font
 ${voffset 4}$color${font Open Sans:size=12}${time %A}, ${time %d %B %Y}$font$color
 ${voffset 4}$color${font}${font Open Sans:bold:size=15}$alignr${voffset -27}${time %H:%M}$font
@@ -143,5 +141,5 @@ ${font Open Sans:size=9:bold}${color #ffffff}${execi 10 qdbus com.github.radiotr
 
 ${voffset 6}${color FFC433}${font Open Sans:size=10:bold}Artist & Title:${font}${color}
 
-${font Open Sans:size=9:bold}${color #ffffff}${execi 10 /home/swipe/.conky/conkyradiotray-ng/noinfo | fold -s -w 45}${color}${image ~/.config/radiotray-ng/bookmark_icons/icon -p 185,810 -f 1}${color #696969}${font Open Sans:size=10:bold}${font}${endif}$endif${if_running radiotray}${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradioart}${voffset -15}${else}$endif
-${voffset -310}
+${font Open Sans:size=9:bold}${color #ffffff}${execi 10 /home/swipe/.conky/conkyradiotray-ng/noinfo | fold -s -w 45}${color}${image ~/.config/radiotray-ng/bookmark_icons/icon -p 185,810 -f 1}${color #696969}${font Open Sans:size=10:bold}${font}${endif}$endif${if_running radiotray-ng}${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradioart}${voffset -15}${else}$endif
+${voffset -280}

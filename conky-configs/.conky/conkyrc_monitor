@@ -98,14 +98,14 @@ ${voffset -13}${alignr}${offset -60}${top mem 4} %
 
 # NETWORK
 ${voffset -16}${font Open Sans:Bold:size=10}${color #FFC433}NETWORK ${voffset -1}${hr 6}
-$color${font Open Sans:bold:size=8.5}External IP ${font}${alignr}${execi 360 curl ifconfig.co}$font 
+$color${font Open Sans:bold:size=8.5}External IP ${font}${alignr}${execi 360 curl ifconfig.co}$font
 
 ${voffset -28}$alignc${execpi 4 echo "\${font Open Sans:bold:size=8.5}\${color #FFC433}$(ping -W 1 -c 1 8.8.8.8 -q | grep rtt | egrep [0-9]+\.[0-9]+ -o | head -n 2 | tail -n 1)\${font}\${color } ms"}
 
 ${voffset -18}${font Open Sans:bold:size=8.5}WiFi $font${wireless_bitrate wlp2s0} $alignr ${addr wlp2s0}
 ${voffset -14}$alignc${wireless_essid wlp2s0}
 ${voffset -9}
-Signal: $alignc${wireless_link_bar 4,290 wlp2s0}
+Signal: $alignc${wireless_link_bar 4,265 wlp2s0}$alignr${wireless_link_qual wlp2s0}%
 ${voffset -13}
 ${font Noto Sans:Bold:size=10}↑ $font${upspeedf wlp2s0} kb/s $alignr ${totalup wlp2s0}
 ${voffset -14}$alignc${upspeedgraph wlp2s0 10,120 000000 FFDEA9}

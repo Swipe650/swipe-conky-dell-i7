@@ -105,7 +105,7 @@ ${voffset -28}$alignc${execpi 4 echo "\${font Open Sans:bold:size=8.5}\${color #
 ${voffset -18}${font Open Sans:bold:size=8.5}WiFi $font${wireless_bitrate wlp2s0} $alignr ${addr wlp2s0}
 ${voffset -14}$alignc${wireless_essid wlp2s0}
 ${voffset -9}
-Signal: $alignc${wireless_link_bar 4,265 wlp2s0}$alignr${wireless_link_qual wlp2s0}%
+Signal: $alignc${wireless_link_bar 4,265 wlp2s0}$alignr${wireless_link_qual_perc wlp2s0}%
 ${voffset -13}
 ${font Noto Sans:Bold:size=10}↑ $font${upspeedf wlp2s0} kb/s $alignr ${totalup wlp2s0}
 ${voffset -14}$alignc${upspeedgraph wlp2s0 10,120 000000 FFDEA9}

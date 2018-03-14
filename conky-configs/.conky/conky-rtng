@@ -53,4 +53,5 @@ ${voffset 26}${color #FFC433}${font Open Sans:size=10:bold}Artist & Title:${font
 ${font Open Sans:size=9:bold}${color #ffffff}${execi 10 /home/swipe/.conky/conkyradiotray-ng/noinfo| fold -s -w 40}${color}${image ~/.config/radiotray-ng/bookmark_icons/icon -p 125,35 -f 1}${endif}
 $else${color #696969}${font Open Sans:size=10:bold}No activity${font}$endif
 ${voffset 150}${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradioart}
+${image ~/.conky/muted.png -p 210,-7 -s 50x50 -f 1}
 ${voffset -230}

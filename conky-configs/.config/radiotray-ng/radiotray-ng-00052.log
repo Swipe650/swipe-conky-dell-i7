@@ -1,0 +1,158 @@
+[2017-07-29 22:29:35.136198] [0x00007f3f72aa59c0] [info ] (main.cpp:166) - radiotray-ng () starting up
+[2017-07-29 22:29:35.142492] [0x00007f3f72aa59c0] [debug] (config.cpp:35) - loading: /home/swipe/.config/radiotray-ng/radiotray-ng.json
+[2017-07-29 22:29:35.165239] [0x00007f3f72aa59c0] [info ] (main.cpp:92) - debug logging disabled
+[2017-07-29 22:29:35.165287] [0x00007f3f72aa59c0] [info ] (player.cpp:32) - starting gstreamer
+[2017-07-29 22:29:35.657252] [0x00007f3f72aa59c0] [info ] (player.cpp:369) - buffer-size=1280000
+[2017-07-29 22:29:35.745166] [0x00007f3f72aa59c0] [info ] (media_keys.cpp:185) - starting media keys
+[2017-07-29 22:29:45.190212] [0x00007f3f72aa59c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-07-29 22:29:45.263908] [0x00007f3f72aa59c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-07-29 22:32:32.703403] [0x00007f3f72aa59c0] [info ] (radiotray_ng.cpp:56) - stopping player
+[2017-07-29 22:34:07.696993] [0x00007f3f72aa59c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, Radio Paradise, http://stream-uk1.radioparadise.com/aac-320
+[2017-07-29 22:34:07.768238] [0x00007f3f72aa59c0] [warning] (playlist_downloader.cpp:193) - Content exceeds our limit of 4,096 bytes!
+[2017-07-29 22:34:07.768522] [0x00007f3f72aa59c0] [info ] (playlist_downloader.cpp:97) - no decoders, assuming direct media stream of content-type: audio/aacp
+[2017-07-29 22:35:25.279801] [0x00007f3f72aa59c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-07-29 22:35:30.830561] [0x00007f3f72aa59c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-07-29 22:40:08.233953] [0x00007f3f72aa59c0] [info ] (radiotray_ng.cpp:56) - stopping player
+[2017-07-30 11:10:29.090613] [0x00007f3f72aa59c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-07-30 11:10:29.164460] [0x00007f3f72aa59c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-07-30 15:50:16.116364] [0x00007f3f72aa59c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, Radio Paradise, http://stream-uk1.radioparadise.com/aac-320
+[2017-07-30 15:50:16.410323] [0x00007f3f72aa59c0] [warning] (playlist_downloader.cpp:193) - Content exceeds our limit of 4,096 bytes!
+[2017-07-30 15:50:16.410522] [0x00007f3f72aa59c0] [info ] (playlist_downloader.cpp:97) - no decoders, assuming direct media stream of content-type: audio/aacp
+[2017-07-30 16:27:19.744841] [0x00007f3f72aa59c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-07-30 16:27:19.819382] [0x00007f3f72aa59c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-07-30 18:17:27.645321] [0x00007f46fa04b9c0] [info ] (main.cpp:166) - radiotray-ng () starting up
+[2017-07-30 18:17:27.745764] [0x00007f46fa04b9c0] [debug] (config.cpp:35) - loading: /home/swipe/.config/radiotray-ng/radiotray-ng.json
+[2017-07-30 18:17:27.798193] [0x00007f46fa04b9c0] [info ] (main.cpp:92) - debug logging disabled
+[2017-07-30 18:17:27.798233] [0x00007f46fa04b9c0] [info ] (player.cpp:32) - starting gstreamer
+[2017-07-30 18:17:30.386169] [0x00007f46fa04b9c0] [info ] (player.cpp:369) - buffer-size=1280000
+[2017-07-30 18:17:30.586433] [0x00007f46fa04b9c0] [info ] (media_keys.cpp:185) - starting media keys
+[2017-07-30 18:21:41.202350] [0x00007f34cf4a99c0] [info ] (main.cpp:166) - radiotray-ng () starting up
+[2017-07-30 18:21:41.313880] [0x00007f34cf4a99c0] [debug] (config.cpp:35) - loading: /home/swipe/.config/radiotray-ng/radiotray-ng.json
+[2017-07-30 18:21:41.355304] [0x00007f34cf4a99c0] [info ] (main.cpp:92) - debug logging disabled
+[2017-07-30 18:21:41.355347] [0x00007f34cf4a99c0] [info ] (player.cpp:32) - starting gstreamer
+[2017-07-30 18:21:43.920995] [0x00007f34cf4a99c0] [info ] (player.cpp:369) - buffer-size=1280000
+[2017-07-30 18:21:44.147977] [0x00007f34cf4a99c0] [info ] (media_keys.cpp:185) - starting media keys
+[2017-07-30 18:22:30.841343] [0x00007f34cf4a99c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-07-30 18:22:30.910992] [0x00007f34cf4a99c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-07-30 21:08:28.361141] [0x00007f34cf4a99c0] [info ] (radiotray_ng.cpp:56) - stopping player
+[2017-07-31 17:18:34.251047] [0x00007f34cf4a99c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-07-31 17:18:34.341228] [0x00007f34cf4a99c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-07-31 20:19:44.250210] [0x00007f34cf4a99c0] [info ] (radiotray_ng.cpp:56) - stopping player
+[2017-07-31 21:46:31.779329] [0x00007f0990f599c0] [info ] (main.cpp:166) - radiotray-ng () starting up
+[2017-07-31 21:46:31.906243] [0x00007f0990f599c0] [debug] (config.cpp:35) - loading: /home/swipe/.config/radiotray-ng/radiotray-ng.json
+[2017-07-31 21:46:31.959540] [0x00007f0990f599c0] [info ] (main.cpp:92) - debug logging disabled
+[2017-07-31 21:46:31.959723] [0x00007f0990f599c0] [info ] (player.cpp:32) - starting gstreamer
+[2017-07-31 21:46:34.631334] [0x00007f0990f599c0] [info ] (player.cpp:369) - buffer-size=1280000
+[2017-07-31 21:46:34.804905] [0x00007f0990f599c0] [info ] (media_keys.cpp:185) - starting media keys
+[2017-08-01 17:10:30.064279] [0x00007f0990f599c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-01 17:10:30.143831] [0x00007f0990f599c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-01 17:34:09.029861] [0x00007f83a2f839c0] [info ] (main.cpp:166) - radiotray-ng () starting up
+[2017-08-01 17:34:09.123302] [0x00007f83a2f839c0] [debug] (config.cpp:35) - loading: /home/swipe/.config/radiotray-ng/radiotray-ng.json
+[2017-08-01 17:34:09.138660] [0x00007f83a2f839c0] [info ] (main.cpp:92) - debug logging disabled
+[2017-08-01 17:34:09.138699] [0x00007f83a2f839c0] [info ] (player.cpp:32) - starting gstreamer
+[2017-08-01 17:34:11.559486] [0x00007f83a2f839c0] [info ] (player.cpp:369) - buffer-size=1280000
+[2017-08-01 17:34:11.812822] [0x00007f83a2f839c0] [info ] (media_keys.cpp:185) - starting media keys
+[2017-08-01 17:47:23.615972] [0x00007f83a2f839c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-01 17:47:23.683957] [0x00007f83a2f839c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-01 18:02:24.619693] [0x00007f5ac46729c0] [info ] (main.cpp:166) - radiotray-ng () starting up
+[2017-08-01 18:02:24.619823] [0x00007f5ac46729c0] [debug] (config.cpp:35) - loading: /home/swipe/.config/radiotray-ng/radiotray-ng.json
+[2017-08-01 18:02:24.619959] [0x00007f5ac46729c0] [info ] (main.cpp:92) - debug logging disabled
+[2017-08-01 18:02:24.619988] [0x00007f5ac46729c0] [info ] (player.cpp:32) - starting gstreamer
+[2017-08-01 18:02:24.850786] [0x00007f5ac46729c0] [info ] (player.cpp:369) - buffer-size=1280000
+[2017-08-01 18:02:24.857637] [0x00007f5ac46729c0] [info ] (media_keys.cpp:185) - starting media keys
+[2017-08-01 18:05:11.924233] [0x00007f01282cd9c0] [info ] (main.cpp:166) - radiotray-ng () starting up
+[2017-08-01 18:05:12.028853] [0x00007f01282cd9c0] [debug] (config.cpp:35) - loading: /home/swipe/.config/radiotray-ng/radiotray-ng.json
+[2017-08-01 18:05:12.083417] [0x00007f01282cd9c0] [info ] (main.cpp:92) - debug logging disabled
+[2017-08-01 18:05:12.083456] [0x00007f01282cd9c0] [info ] (player.cpp:32) - starting gstreamer
+[2017-08-01 18:05:13.842792] [0x00007f01282cd9c0] [info ] (player.cpp:369) - buffer-size=1280000
+[2017-08-01 18:05:14.071299] [0x00007f01282cd9c0] [info ] (media_keys.cpp:185) - starting media keys
+[2017-08-01 18:06:17.750394] [0x00007f01282cd9c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-01 18:06:17.817148] [0x00007f01282cd9c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-01 22:26:11.157331] [0x00007f01282cd9c0] [info ] (radiotray_ng.cpp:56) - stopping player
+[2017-08-01 22:26:13.784906] [0x00007f01282cd9c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-01 22:26:13.848411] [0x00007f01282cd9c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-01 22:36:07.954264] [0x00007f8207b349c0] [info ] (main.cpp:166) - radiotray-ng () starting up
+[2017-08-01 22:36:08.041519] [0x00007f8207b349c0] [debug] (config.cpp:35) - loading: /home/swipe/.config/radiotray-ng/radiotray-ng.json
+[2017-08-01 22:36:08.105407] [0x00007f8207b349c0] [info ] (main.cpp:92) - debug logging disabled
+[2017-08-01 22:36:08.105453] [0x00007f8207b349c0] [info ] (player.cpp:32) - starting gstreamer
+[2017-08-01 22:36:10.272865] [0x00007f8207b349c0] [info ] (player.cpp:369) - buffer-size=1280000
+[2017-08-01 22:36:10.520624] [0x00007f8207b349c0] [info ] (media_keys.cpp:185) - starting media keys
+[2017-08-01 22:37:21.020259] [0x00007f8207b349c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-01 22:37:26.577841] [0x00007f8207b349c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-01 23:18:27.769454] [0x00007f8207b349c0] [info ] (radiotray_ng.cpp:56) - stopping player
+[2017-08-02 16:54:52.637214] [0x00007f8207b349c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-02 16:54:52.723404] [0x00007f8207b349c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-02 17:05:58.287474] [0x00007f8207b349c0] [info ] (player.cpp:284) - canceling outstanding clock request
+[2017-08-02 17:05:59.644074] [0x00007f8207b349c0] [info ] (player.cpp:284) - canceling outstanding clock request
+[2017-08-02 17:06:06.361493] [0x00007f8207b349c0] [info ] (player.cpp:284) - canceling outstanding clock request
+[2017-08-02 17:06:16.375986] [0x00007f81cde70700] [error] (player.cpp:168) - buffering timeout, restarting stream...
+[2017-08-02 18:30:24.345082] [0x00007f8207b349c0] [info ] (radiotray_ng.cpp:56) - stopping player
+[2017-08-02 18:34:06.002185] [0x00007fda0e2169c0] [info ] (main.cpp:166) - radiotray-ng () starting up
+[2017-08-02 18:34:06.233918] [0x00007fda0e2169c0] [debug] (config.cpp:35) - loading: /home/swipe/.config/radiotray-ng/radiotray-ng.json
+[2017-08-02 18:34:06.268682] [0x00007fda0e2169c0] [info ] (main.cpp:92) - debug logging disabled
+[2017-08-02 18:34:06.268719] [0x00007fda0e2169c0] [info ] (player.cpp:32) - starting gstreamer
+[2017-08-02 18:34:09.265183] [0x00007fda0e2169c0] [info ] (player.cpp:369) - buffer-size=1280000
+[2017-08-02 18:34:09.409533] [0x00007fda0e2169c0] [info ] (media_keys.cpp:185) - starting media keys
+[2017-08-02 18:34:53.234792] [0x00007fda0e2169c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-02 18:34:53.312030] [0x00007fda0e2169c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-02 20:56:08.482470] [0x00007fda0e2169c0] [info ] (radiotray_ng.cpp:56) - stopping player
+[2017-08-03 18:18:58.586100] [0x00007fda0e2169c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-03 18:18:58.763371] [0x00007fda0e2169c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-03 20:49:34.249989] [0x00007fda0e2169c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, The Current, http://current.stream.publicradio.org/kcmp.mp3
+[2017-08-03 20:49:35.772602] [0x00007fda0e2169c0] [warning] (playlist_downloader.cpp:193) - Content exceeds our limit of 4,096 bytes!
+[2017-08-03 20:49:35.799156] [0x00007fda0e2169c0] [info ] (playlist_downloader.cpp:97) - no decoders, assuming direct media stream of content-type: audio/mpeg
+[2017-08-03 20:50:40.919220] [0x00007fda0e2169c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, Radio Paradise, http://stream-uk1.radioparadise.com/aac-320
+[2017-08-03 20:50:41.212479] [0x00007fda0e2169c0] [warning] (playlist_downloader.cpp:193) - Content exceeds our limit of 4,096 bytes!
+[2017-08-03 20:50:41.212647] [0x00007fda0e2169c0] [info ] (playlist_downloader.cpp:97) - no decoders, assuming direct media stream of content-type: audio/aacp
+[2017-08-03 21:26:18.415414] [0x00007fda0e2169c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, Indie Brew Radio, http://stream.indiebrew.net:8000
+[2017-08-03 21:26:19.189071] [0x00007fda0e2169c0] [warning] (playlist_downloader.cpp:193) - Content exceeds our limit of 4,096 bytes!
+[2017-08-03 21:26:19.189290] [0x00007fda0e2169c0] [info ] (playlist_downloader.cpp:97) - no decoders, assuming direct media stream of content-type: audio/mpeg
+[2017-08-03 21:26:40.600637] [0x00007fda0e2169c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-03 21:26:40.671771] [0x00007fda0e2169c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-03 21:27:08.053255] [0x00007fda0e2169c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, Classic Rock Lounge, http://www.classicrocklounge.com/audio/mp3_192/listen.m3u
+[2017-08-03 21:27:08.501583] [0x00007fda0e2169c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-03 21:30:48.373186] [0x00007fda0e2169c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, Radio Paradise, http://stream-uk1.radioparadise.com/aac-320
+[2017-08-03 21:30:48.537564] [0x00007fda0e2169c0] [warning] (playlist_downloader.cpp:193) - Content exceeds our limit of 4,096 bytes!
+[2017-08-03 21:30:48.537785] [0x00007fda0e2169c0] [info ] (playlist_downloader.cpp:97) - no decoders, assuming direct media stream of content-type: audio/aacp
+[2017-08-03 21:31:53.481467] [0x00007fda0e2169c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-03 21:31:53.553116] [0x00007fda0e2169c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-03 22:35:32.007601] [0x00007f997701c9c0] [info ] (main.cpp:166) - radiotray-ng () starting up
+[2017-08-03 22:35:32.023266] [0x00007f997701c9c0] [debug] (config.cpp:35) - loading: /home/swipe/.config/radiotray-ng/radiotray-ng.json
+[2017-08-03 22:35:32.036187] [0x00007f997701c9c0] [info ] (main.cpp:92) - debug logging disabled
+[2017-08-03 22:35:32.036222] [0x00007f997701c9c0] [info ] (player.cpp:32) - starting gstreamer
+[2017-08-03 22:35:32.499573] [0x00007f997701c9c0] [info ] (player.cpp:369) - buffer-size=1280000
+[2017-08-03 22:35:32.553036] [0x00007f997701c9c0] [info ] (media_keys.cpp:185) - starting media keys
+[2017-08-03 22:39:30.529533] [0x00007efd393b29c0] [info ] (main.cpp:166) - radiotray-ng () starting up
+[2017-08-03 22:39:30.534346] [0x00007efd393b29c0] [debug] (config.cpp:35) - loading: /home/swipe/.config/radiotray-ng/radiotray-ng.json
+[2017-08-03 22:39:30.534534] [0x00007efd393b29c0] [info ] (main.cpp:92) - debug logging disabled
+[2017-08-03 22:39:30.534571] [0x00007efd393b29c0] [info ] (player.cpp:32) - starting gstreamer
+[2017-08-03 22:39:30.769469] [0x00007efd393b29c0] [info ] (player.cpp:369) - buffer-size=1280000
+[2017-08-03 22:39:30.782208] [0x00007efd393b29c0] [info ] (media_keys.cpp:185) - starting media keys
+[2017-08-03 22:48:34.877601] [0x00007efd393b29c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-03 22:48:34.960684] [0x00007efd393b29c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-04 17:47:19.843127] [0x00007efd393b29c0] [error] (player.cpp:192) - error received from element source: Could not resolve server name.
+[2017-08-04 17:47:19.856561] [0x00007efd393b29c0] [error] (player.cpp:193) - debugging information: gstsouphttpsrc.c(1270): gst_soup_http_src_parse_status (): /GstPlayBin:player/GstURIDecodeBin:uridecodebin0/GstSoupHTTPSrc:source:
+Error resolving “media-the.musicradio.com”: Name or service not known (2), URL: http://media-the.musicradio.com:80/LBCUK, Redirect to: (NULL)
+[2017-08-04 17:47:19.963099] [0x00007efd393b29c0] [info ] (player.cpp:69) - playlist is empty
+[2017-08-04 17:48:56.995880] [0x00007efd393b29c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-04 17:48:57.072945] [0x00007efd393b29c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-04 17:56:18.499960] [0x00007f4b05d309c0] [info ] (main.cpp:166) - radiotray-ng () starting up
+[2017-08-04 17:56:18.603413] [0x00007f4b05d309c0] [debug] (config.cpp:35) - loading: /home/swipe/.config/radiotray-ng/radiotray-ng.json
+[2017-08-04 17:56:18.611805] [0x00007f4b05d309c0] [info ] (main.cpp:92) - debug logging disabled
+[2017-08-04 17:56:18.611844] [0x00007f4b05d309c0] [info ] (player.cpp:32) - starting gstreamer
+[2017-08-04 17:56:20.608495] [0x00007f4b05d309c0] [info ] (player.cpp:369) - buffer-size=1280000
+[2017-08-04 17:56:20.761343] [0x00007f4b05d309c0] [info ] (media_keys.cpp:185) - starting media keys
+[2017-08-04 17:57:41.384715] [0x00007f4b05d309c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-04 17:57:46.939263] [0x00007f4b05d309c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-04 21:44:53.344734] [0x00007f4b05d309c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, Radio Paradise, http://stream-uk1.radioparadise.com/aac-320
+[2017-08-04 21:44:53.663004] [0x00007f4b05d309c0] [warning] (playlist_downloader.cpp:193) - Content exceeds our limit of 4,096 bytes!
+[2017-08-04 21:44:53.663298] [0x00007f4b05d309c0] [info ] (playlist_downloader.cpp:97) - no decoders, assuming direct media stream of content-type: audio/aacp
+[2017-08-04 22:48:20.980800] [0x00007f4b05d309c0] [info ] (radiotray_ng.cpp:431) - downloading: Imported, LBC UK, http://media-ice.musicradio.com/LBCUK.m3u
+[2017-08-04 22:48:26.568484] [0x00007f4b05d309c0] [info ] (playlist_downloader.cpp:92) - decoder: M3U
+[2017-08-04 23:05:40.834617] [0x00007f4b05d309c0] [info ] (radiotray_ng.cpp:56) - stopping player
+[2017-08-05 14:54:41.963886] [0x00007ffb981239c0] [info ] (main.cpp:166) - radiotray-ng () starting up
+[2017-08-05 14:54:42.049950] [0x00007ffb981239c0] [debug] (config.cpp:35) - loading: /home/swipe/.config/radiotray-ng/radiotray-ng.json
+[2017-08-05 14:54:42.169782] [0x00007ffb981239c0] [info ] (main.cpp:92) - debug logging disabled
+[2017-08-05 14:54:42.169849] [0x00007ffb981239c0] [info ] (player.cpp:32) - starting gstreamer
+[2017-08-05 14:54:44.766012] [0x00007ffb981239c0] [info ] (player.cpp:369) - buffer-size=1280000
+[2017-08-05 14:54:45.257572] [0x00007ffb981239c0] [info ] (media_keys.cpp:185) - starting media keys

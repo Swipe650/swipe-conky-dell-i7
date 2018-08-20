@@ -6,7 +6,8 @@ st=$(qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray
  
 so=$(qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state | jq -r '.title')
 rtngtitle='' 
-playing=${so: -7}
+#playing=${so: -7}
+playing=''
 rtngsong=${so}
 #lbcuk={st:0:6}
 lbcuk='LBC UK'

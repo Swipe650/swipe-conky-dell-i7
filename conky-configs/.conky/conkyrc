@@ -29,7 +29,7 @@ default_outline_color green
 alignment top_right
 #alignment bottom_right
 gap_x 9
-gap_y 9
+gap_y 38
 no_buffers yes
 uppercase no
 cpu_avg_samples 2
@@ -38,7 +38,7 @@ override_utf8_locale yes
 #use_spacer no
  
 TEXT
-${voffset -4}${alignc -10}${font Open Sans:Bold:size=20}${color #FFC433}Arch ${color }Linux${if_running openvpn}${alignc -10}${image ~/.conky/vpn.png -p 1,0 -s 30x30 -f 1}$else$endif
+${voffset -4}${alignc -10}${font Open Sans:Bold:size=20}${color #FFC433}Arch ${color }Linux${if_running openvpn}${alignc -10}${image ~/.conky/vpn.png -p 1,0 -s 30x30 -f 1}$else$endif${if_existing /home/swipe/.conky/fwon.png} ${image ~/.conky/fwon.png -p 260,10 -s 25x25 -f 1}$endif
 ${voffset -14}${color #FFC433}${font Open Sans:Bold:size=10}DATE ${voffset -1}${hr 6}$color$font
 ${voffset 4}$color${font Open Sans:size=12}${time %A}, ${time %d %B %Y}$font$color
 ${voffset 4}$color${font}${font Open Sans:bold:size=15}$alignr${voffset -27}${time %H:%M}$font
@@ -78,8 +78,8 @@ $color${font}Intel Core i7-2640 CPU @ ${freq_g cpu0}GHz $alignr $cpu%
 #@ ${execi 2 sensors | grep 'Physical id 0' | cut -c16-21}°C
 ${font}Core 0 - ${execi 2 sensors | grep 'Core 0' | cut -c17-25} ${alignc 80}${cpubar cpu1}${color}
 ${font}Core 1 - ${execi 2 sensors | grep 'Core 1' | cut -c17-25} ${alignc 80}${cpubar cpu2}${color}
-#${font}Core 2 - ${execi 2 sensors | grep 'Core 0' | cut -c18-19}°C ${alignc 60}${color #FFC433}${cpubar cpu3}${color}
-#${font}Core 3 - ${execi 2 sensors | grep 'Core 1' | cut -c18-19}°C ${alignc 60}${color #FFC433}${cpubar cpu4}${color}
+${font}Core 2 - ${execi 2 sensors | grep 'Core 0' | cut -c17-25} ${alignc 80}${cpubar cpu3}${color}
+${font}Core 3 - ${execi 2 sensors | grep 'Core 1' | cut -c17-25} ${alignc 80}${cpubar cpu4}${color}
 ${font}CPU Fan Speed - ${execi 2 sensors | grep 'Fan' | cut -c16-31} ${alignc 60}
 
 ${voffset -12}${font Open Sans:Bold:size=10}${color #FFC433}${voffset -2}TOP PROCESSES${color}${font}${voffset -1} -------------------------------- ${font Open Sans:Bold:size=10}${color #FFC433}${voffset -2}RAM${color}${font}${voffset -1} ------ ${font Open Sans:Bold:size=10}${color #FFC433}${voffset -4}CPU${color}${font}${voffset -2} --
@@ -107,9 +107,9 @@ ${voffset -14}$alignc${wireless_essid wlp2s0}
 ${voffset -9}
 Signal: $alignc${wireless_link_bar 4,290 wlp2s0}
 ${voffset -13}
-${font Noto Sans:Bold:size=10}↑ $font${upspeedf wlp2s0} kb/s $alignr ${totalup wlp2s0}
+${font :Bold:size=10}↑ $font${upspeedf wlp2s0} kb/s $alignr ${totalup wlp2s0}
 ${voffset -14}$alignc${upspeedgraph wlp2s0 10,120 000000 FFDEA9}
-${font Noto Sans:Bold:size=10}↓ $font${downspeedf wlp2s0} kb/s $alignr ${totaldown wlp2s0}
+${font :Bold:size=10}↓ $font${downspeedf wlp2s0} kb/s $alignr ${totaldown wlp2s0}
 ${voffset -14}$alignc${downspeedgraph wlp2s0 10,120 000000 FFDEA9}
 
 # HDD

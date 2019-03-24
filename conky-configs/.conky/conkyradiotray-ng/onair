@@ -9,7 +9,8 @@ onairtemp=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '
 
 onairtime=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '//section/div/p/span/text()' - | tail -c 25)
 
-if [ -z "$onair" ]; 
+#if [ -z "$onair" ]; 
+if [ "$onair" == "" ];
     then
         echo $onairtemp > /home/swipe/.conky/conkyradiotray-ng/onair.txt
     else

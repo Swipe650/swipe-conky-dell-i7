@@ -156,4 +156,4 @@ ${image ~/.conky/conkygoogleplaymusic/gmdmp_art -p 210,820 -s 120x120}
 
 ${voffset -70}${font Open Sans:size=9:bold}${color #aaaaaa}${alignr 140}${exec ~/.conky/conkygoogleplaymusic/time}
 ${voffset -68}$else${endif}
-${voffset -285}
+${voffset -325}

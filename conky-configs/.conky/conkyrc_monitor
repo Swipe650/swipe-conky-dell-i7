@@ -147,7 +147,7 @@ ${voffset -82}${font Open Sans:size=12:bold}${color}${if_match "${exec pidof -x 
 
 # GPMDP
 ${if_match "${exec pidof 'Google Play Music Desktop Player' }" != ""}${voffset -30}${font Open Sans:Bold:size=10}${color FFC433}GPMDP ${voffset -1}${hr 6}
-${voffset 20}${color #efefef}${font Open Sans:size=9:bold}${alignr 140}${execi 10 cat "$HOME/.config/Google Play Music Desktop Player/json_store/playback.json" | jq -r '.song.title' | cut -c1-23}
+${voffset 10}${color #efefef}${font Open Sans:size=9:bold}${alignr 140}${execi 10 cat "$HOME/.config/Google Play Music Desktop Player/json_store/playback.json" | jq -r '.song.title' | cut -c1-23}
 
 ${voffset -5}${color #FFC433}${font Open Sans:size=9:bold}${alignr 140}${execi 10 cat "$HOME/.config/Google Play Music Desktop Player/json_store/playback.json" | jq -r '.song.artist'}
 

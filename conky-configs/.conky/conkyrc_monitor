@@ -157,5 +157,5 @@ ${voffset 10}${font Open Sans:size=9:bold}${color #aaaaaa}${alignr 140}${execi 1
 ${image ~/.conky/conkygoogleplaymusic/gmdmp_art -p 210,810 -s 120x120}
 
 ${voffset -70}${font Open Sans:size=9:bold}${color #aaaaaa}${alignr 140}${exec ~/.conky/conkygoogleplaymusic/time}
-${voffset -68}$else${endif}
-${voffset -325}
+${voffset -28}$else${endif}
+${voffset -375}

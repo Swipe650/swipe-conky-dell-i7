@@ -11,7 +11,7 @@ own_window_type dock
 own_window_transparent no
 own_window_argb_visual yes
 #own_window_argb_value 60
-own_window_argb_value 100
+own_window_argb_value 60
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 #own_window_hints decorated,below,sticky,skip_taskbar,skip_pager
 double_buffer yes
@@ -143,16 +143,18 @@ ${if_existing /home/swipe/.conky/muted.png}${image ~/.conky/muted.png -p 120,860
 ${voffset -82}${font Open Sans:size=12:bold}${color}${if_match "${exec pidof -x toggle_mute3_rtng}" != ""}${execpi 1 cat ~/.conkytimer}${else}$endif
 #${voffset -87}${font Open Sans:size=12:bold}${color}200
 #
+
+
 # GPMDP
-${if_match "${exec pidof 'Google Play Music Desktop Player' }" != ""}${voffset -40}${font Open Sans:Bold:size=10}${color FFC433}GPM PLAYER ${voffset -1}${hr 6}
-${voffset 20}${color #efefef}${font Open Sans:size=9:bold}${alignr 140}${execi 10 cat "$HOME/.config/Google Play Music Desktop Player/json_store/playback.json" | jq -r '.song.title' | cut -c1-23}
+${if_match "${exec pidof 'Google Play Music Desktop Player' }" != ""}${voffset -30}${font Open Sans:Bold:size=10}${color FFC433}GPM PLAYER ${voffset -1}${hr 6}
+${voffset 10}${color #efefef}${font Open Sans:size=9:bold}${alignr 140}${execi 10 cat "$HOME/.config/Google Play Music Desktop Player/json_store/playback.json" | jq -r '.song.title' | cut -c1-23}
 
 ${voffset -5}${color #FFC433}${font Open Sans:size=9:bold}${alignr 140}${execi 10 cat "$HOME/.config/Google Play Music Desktop Player/json_store/playback.json" | jq -r '.song.artist'}
 
 ${voffset -7}${color #efefef}${font Open Sans:size=8:italic}${alignr 140}${execi 10 cat "$HOME/.config/Google Play Music Desktop Player/json_store/playback.json" | jq -r '.song.album' | cut -c1-32}
 
 ${voffset 10}${font Open Sans:size=9:bold}${color #aaaaaa}${alignr 140}${execi 10 ~/.conky/conkygoogleplaymusic/albumart}
-${image ~/.conky/conkygoogleplaymusic/gmdmp_art -p 210,820 -s 120x120}
+${image ~/.conky/conkygoogleplaymusic/gmdmp_art -p 210,810 -s 120x120}
 
 ${voffset -70}${font Open Sans:size=9:bold}${color #aaaaaa}${alignr 140}${exec ~/.conky/conkygoogleplaymusic/time}
 ${voffset -68}$else${endif}

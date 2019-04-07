@@ -49,21 +49,6 @@
             "url" : "http://radio.talkradio.co.uk/stream?ref=rf"
          },
          {
-            "image" : "~/.config/radiotray-ng/bookmark_icons/prr",
-            "name" : "Pure Rock Radio",
-            "url" : "https://www.internet-radio.com/servers/tools/playlistgenerator/?u=http://80.76.216.75:9992/listen.pls&t=.m3u"
-         },
-         {
-            "image" : "~/.config/radiotray-ng/bookmark_icons/crl",
-            "name" : "Classic Rock Lounge",
-            "url" : "http://www.classicrocklounge.com/audio/mp3_192/listen.m3u"
-         },
-         {
-            "image" : "~/.config/radiotray-ng/bookmark_icons/mhr",
-            "name" : "Metal Head Radio",
-            "url" : "http://www.streamlicensing.com/directory/index.cgi/playlist.pls?action=playlist&type=pls&sid=2538&stream_id=7677"
-         },
-         {
             "image" : "~/.config/radiotray-ng/bookmark_icons/hr80s",
             "name" : "Hard Rockin 80s",
             "url" : "http://hardrockin80s.com/80.pls"
@@ -79,9 +64,16 @@
             "url" : "http://twit.am/listen.m3u"
          },
          {
+            "image" : "~/.config/radiotray-ng/bookmark_icons/ragga",
+            "name" : "Raggakings",
+            "notifications" : true,
+            "url" : "http://www.raggakings.net/listen.pls"
+         },
+         {
             "image" : "~/.config/radiotray-ng/bookmark_icons/kfi",
             "name" : "KFI",
-            "url" : "http://kfi-am.akacast.akamaistream.net/7/121/19771/v1/auth.akacast.akamaistream.net/kfi-am"
+            "notifications" : false,
+            "url" : "http://c8icyelb.prod.playlists.ihrhls.com/177_icy"
          },
          {
             "image" : "/home/swipe/.config/radiotray-ng/bookmark_icons/talksport2",
@@ -94,10 +86,10 @@
             "url" : "http://radio.talksport.com/stream?aisGetOriginalStream=true"
          },
          {
-            "image" : "/home/swipe/.config/radiotray-ng/bookmark_icons/SciFi_OTR",
-            "name" : "SciFi Old Time Radio",
+            "image" : "/home/swipe/.config/radiotray-ng/bookmark_icons/signal2",
+            "name" : "Signal 2",
             "notifications" : true,
-            "url" : "http://s1.voscast.com:8652/;"
+            "url" : "http://wg.cdn.tibus.net/STKSig2"
          }
       ]
    },
@@ -125,6 +117,24 @@
             "image" : "~/.config/radiotray-ng/bookmark_icons/radiostoke",
             "name" : "Radio Stoke",
             "url" : "http://open.live.bbc.co.uk/mediaselector/5/select/version/2.0/mediaset/http-icy-mp3-a/vpid/bbc_radio_stoke/format/pls.pls"
+         },
+         {
+            "image" : "/home/swipe/.config/radiotray-ng/bookmark_icons/radiokent",
+            "name" : "Radio Kent",
+            "notifications" : true,
+            "url" : "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_lrkent_mf_p"
+         },
+         {
+            "image" : "/home/swipe/.config/radiotray-ng/bookmark_icons/radio3",
+            "name" : "Radio 3 HQ",
+            "notifications" : true,
+            "url" : "http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_three.m3u8"
+         },
+         {
+            "image" : "/home/swipe/.config/radiotray-ng/bookmark_icons/radio3",
+            "name" : "Radio 3",
+            "notifications" : true,
+            "url" : "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio3_mf_p"
          }
       ]
    },
@@ -169,8 +179,9 @@
             "url" : "https://somafm.com/brfm.pls"
          },
          {
-            "image" : "",
+            "image" : "/home/swipe/.config/radiotray-ng/bookmark_icons/secretagent",
             "name" : "Secret Agent",
+            "notifications" : true,
             "url" : "http://somafm.com/secretagent.pls"
          },
          {
@@ -182,6 +193,12 @@
             "image" : "",
             "name" : "Illinois Street Lounge",
             "url" : "http://somafm.com/illstreet.pls"
+         },
+         {
+            "image" : "~/.config/radiotray-ng/bookmark_icons/soma",
+            "name" : "Space Station Soma",
+            "notifications" : true,
+            "url" : "http://somafm.com/spacestation.pls"
          }
       ]
    },
@@ -224,11 +241,6 @@
             "image" : "",
             "name" : "PopTron",
             "url" : "http://somafm.com/poptron.pls"
-         },
-         {
-            "image" : "",
-            "name" : "Raggakings",
-            "url" : "http://www.raggakings.net/listen.pls"
          }
       ]
    },

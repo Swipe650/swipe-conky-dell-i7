@@ -286,8 +286,9 @@
             "url" : "http://provisioning.streamtheworld.com/pls/KDFCFM.pls"
          },
          {
-            "image" : "",
+            "image" : "/home/swipe/.config/radiotray-ng/bookmark_icons/classicfm",
             "name" : "Classic FM",
+            "notifications" : true,
             "url" : "http://media-ice.musicradio.com/ClassicFMMP3.m3u"
          },
          {

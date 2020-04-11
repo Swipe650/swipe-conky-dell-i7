@@ -9,7 +9,7 @@ own_window yes
 own_window_type dock
 own_window_transparent no
 own_window_argb_visual yes
-own_window_argb_value 150
+own_window_argb_value 100
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 #own_window_hints decorated,below,sticky,skip_taskbar,skip_pager
 double_buffer yes
@@ -50,8 +50,10 @@ ${font Open Sans:size=9:bold}${color #ffffff}${execi 10 qdbus com.github.radiotr
 
 ${voffset 26}${color #FFC433}${font Open Sans:size=10:bold}Artist & Title:${font}${color}
 
-${font Open Sans:size=9:bold}${color #ffffff}${execi 10 /home/swipe/.conky/conkyradiotray-ng/noinfo| fold -s -w 40}${color}${image ~/.config/radiotray-ng/bookmark_icons/icon -p 125,35 -f 1}${endif}
+${font Open Sans:size=9:bold}${color #ffffff}${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradioart | fold -s -w 40}${color}${image ~/.config/radiotray-ng/bookmark_icons/icon -p 125,35 -f 1}${endif}
 $else${color #696969}${font Open Sans:size=10:bold}No activity${font}$endif
-${voffset 150}${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradioart}
-${image ~/.conky/muted.png -p 70,90 -s 40x40 -f 1}
-${voffset -240}
+${if_existing /home/swipe/.conky/muted.png}${image ~/.conky/muted.png -p 120,860 -s 40x40 -f 1}$endif
+${voffset -82}${font Open Sans:size=12:bold}${color}${if_match "${exec pidof -x toggle_mute3_rtng}" != ""}${execpi 1 cat ~/.conkytimer}${else}$endif
+${image ~/.conky/muted.png -p 80,90 -s 40x40 -f 1}${voffset -210}${font Open Sans:size=10:bold}${execpi 1 cat ~/.conkytimer }
+
+${voffset -145}

@@ -19,11 +19,6 @@ On_LBC()
         onair=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '//section/div/span//text()' - | tail -c 61)
         onairtime=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '//section/div/p/span/text()' - | tail -c 25)
         Onair_txt
-#         echo $onair > ~/.conky/conkyradiotray-ng/onair.txt
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo "   " >> ~/.conky/conkyradiotray-ng/onair.txt
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo $onairtime >> ~/.conky/conkyradiotray-ng/onair.txt
 }
 
 On_LBC_News()
@@ -33,11 +28,6 @@ On_LBC_News()
         onair=$(curl -s https://www.lbcnews.co.uk/ | xmllint --html --nowarning --xpath '//section/div/p/span//text()' - | head -c 67)
         onairtime=$(curl -s https://www.lbcnews.co.uk/ | xmllint --html --nowarning --xpath '//section/div/p/span/text()' - | tail -c 25)
         Onair_txt
-#         echo $onair > ~/.conky/conkyradiotray-ng/onair.txt
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo "   " >> ~/.conky/conkyradiotray-ng/onair.txt
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo $onairtime >> ~/.conky/conkyradiotray-ng/onair.txt
 }
 
 On_Talkradio()
@@ -92,11 +82,6 @@ On_Talkradio()
         fi
         
         Onair_txt
-#         echo $onair > ~/.conky/conkyradiotray-ng/onair.txt
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo "   " >> ~/.conky/conkyradiotray-ng/onair.txt
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo $onairtime >> ~/.conky/conkyradiotray-ng/onair.txt
 }
 
 On_chilloutzone()
@@ -115,81 +100,40 @@ On_chilloutzone()
         fi
 }
 
-# On_radiothree()
+On_radiothree()
 # Get what's on Radio 3
-# {
-#         timeslot=$(curl -s https://www.bbc.co.uk/radio3 | xmllint --html --nowarning --xpath '//div[2]/a//time/text()' - )
-# 
-#         prog=$(curl -s https://www.bbc.co.uk/radio3 | xmllint --html --nowarning --xpath '//div[2]/a//h3/text()' - )
-# 
-#         progname=$(curl -s https://www.bbc.co.uk/radio3 | xmllint --html --nowarning --xpath '//div[2]/a//p/text()' - )
-#         
-# 
-#         echo "$timeslot" > ~/.conky/conkyradiotray-ng/onair.txt
-#  
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo " - " >> ~/.conky/conkyradiotray-ng/onair.txt
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo "$prog" >> ~/.conky/conkyradiotray-ng/onair.txt
-#         echo "$progname" >> ~/.conky/conkyradiotray-ng/onair.txt
-# }
-# 
-# On_radiofour()
+{
+
+onair=$(curl -s https://www.bbc.co.uk/sounds/play/live:bbc_radio_three | xmllint --html --nowarning --xpath '//body//div[2]//text()' - | awk '/On Air/,/Next/' | awk 'NR==3, NR==7' | awk '{print}' ORS=' ')
+echo $onair > ~/.conky/conkyradiotray-ng/onair.txt
+}
+
+
+On_radiofour()
 # Get what's on Radio 4
-# {
-#         timeslot=$(curl -s https://www.bbc.co.uk/radio4 | xmllint --html --nowarning --xpath '//div[2]/a//time/text()' - )
-# 
-#         prog=$(curl -s https://www.bbc.co.uk/radio4 | xmllint --html --nowarning --xpath '//div[2]/a//h3/text()' - )
-# 
-#         progname=$(curl -s https://www.bbc.co.uk/radio4 | xmllint --html --nowarning --xpath '//div[2]/a//p/text()' - )
-#         
-#         
-#         echo "$timeslot" > ~/.conky/conkyradiotray-ng/onair.txt
-#  
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo " - " >> ~/.conky/conkyradiotray-ng/onair.txt
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo "$prog" >> ~/.conky/conkyradiotray-ng/onair.txt
-#         echo "$progname" >> ~/.conky/conkyradiotray-ng/onair.txt
-# }
-# 
-# On_radiofourextra()
+{
+
+onair=$(curl -s https://www.bbc.co.uk/sounds/play/live:bbc_radio_fourfm | xmllint --html --nowarning --xpath '//body//div[2]//text()' - | awk '/On Air/,/Next/' | awk 'NR==3, NR==7' | awk '{print}' ORS=' ')
+echo $onair > ~/.conky/conkyradiotray-ng/onair.txt
+}
+
+
+ On_radiofourextra()
 # Get what's on Radio 4
-# {
-#         timeslot=$(curl -s https://www.bbc.co.uk/radio4extra | xmllint --html --nowarning --xpath '//div[2]/a//time/text()' - )
-# 
-#         prog=$(curl -s https://www.bbc.co.uk/radio4extra | xmllint --html --nowarning --xpath '//div[2]/a//h3/text()' - )
-# 
-#         progname=$(curl -s https://www.bbc.co.uk/radio4extra | xmllint --html --nowarning --xpath '//div[2]/a//p/text()' - )
-#         
-#         
-#         echo "$timeslot" > ~/.conky/conkyradiotray-ng/onair.txt
-#  
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo " - " >> ~/.conky/conkyradiotray-ng/onair.txt
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo "$prog" >> ~/.conky/conkyradiotray-ng/onair.txt
-#         echo "$progname" >> ~/.conky/conkyradiotray-ng/onair.txt
-# }
-# 
-# On_fivelive()
+{
+
+onair=$(curl -s  https://www.bbc.co.uk/sounds/play/live:bbc_radio_four_extra | xmllint --html --nowarning --xpath '//body//div[2]//text()' - | awk '/On Air/,/Next/' | awk 'NR==3, NR==7' | awk '{print}' ORS=' ')
+echo $onair > ~/.conky/conkyradiotray-ng/onair.txt
+}
+
+
+On_fivelive()
 # Get what's on 5live
-# {
-#         timeslot=$(curl -s https://www.bbc.co.uk/5live | xmllint --html --nowarning --xpath '//div[2]/a//time/text()' - )
-# 
-#         prog=$(curl -s https://www.bbc.co.uk/5live | xmllint --html --nowarning --xpath '//div[2]/a//h3/text()' - )
-# 
-#         progname=$(curl -s https://www.bbc.co.uk/5live | xmllint --html --nowarning --xpath '//div[2]/a//p/text()' - )
-#         
-#         
-#         echo "$timeslot" > ~/.conky/conkyradiotray-ng/onair.txt
-#  
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo " - " >> ~/.conky/conkyradiotray-ng/onair.txt
-#         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
-#         echo "$prog" >> ~/.conky/conkyradiotray-ng/onair.txt
-#         echo "$progname" >> ~/.conky/conkyradiotray-ng/onair.txt
-# }
+{
+onair=$(curl -s https://www.bbc.co.uk/sounds/play/live:bbc_radio_five_live | xmllint --html --nowarning --xpath '//body//div[2]//text()' - | awk '/On Air/,/Next/' | awk 'NR==3, NR==7' | awk '{print}' ORS=' ')
+echo $onair > ~/.conky/conkyradiotray-ng/onair.txt
+}
+
 
 On_radioparadise()
 #Get what's on radio paradise and download cover artist
@@ -305,23 +249,23 @@ case "$station" in
 ;;
     "$fivelive" )
         convert ~/.config/radiotray-ng/bookmark_icons/5live -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
-        #On_fivelive
+        On_fivelive
 ;;
     "$radiofour" )
         convert ~/.config/radiotray-ng/bookmark_icons/radio4 -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
-        #On_radiofour
+        On_radiofour
 ;;
     "$radiothree" )
         convert ~/.config/radiotray-ng/bookmark_icons/radio3 -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
-        #On_radiothree
+        On_radiothree
 ;;
     "$radiothreehq" )
         convert ~/.config/radiotray-ng/bookmark_icons/radio3 -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
-        #On_radiothree
+        On_radiothree
 ;;
     "$radiofourextra" )
         convert ~/.config/radiotray-ng/bookmark_icons/radio4extra -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
-        #On_radiofourextra
+        On_radiofourextra
 ;;
     "$radiostoke" )
         convert ~/.config/radiotray-ng/bookmark_icons/radiostoke -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
@@ -374,7 +318,7 @@ case "$station" in
 esac
 
 # Show artist and title info or "No Info"
-if [ "$lbc_uk" = "$st" ] || [ "$lbc_news" = "$st" ] || [ "$lbc_london" = "$st" ] || [ "$talkradio" = "$st" ] || [ "$radio_paradise" = "$st" ] || [ "$chilloutplus" = "$st" ];
+if [ "$lbc_uk" = "$st" ] || [ "$lbc_news" = "$st" ] || [ "$lbc_london" = "$st" ] || [ "$talkradio" = "$st" ] || [ "$radio_paradise" = "$st" ] || [ "$chilloutplus" = "$st" ] || [ "$radiofour" = "$st" ] || [ "$radiofourextra" = "$st" ] || [ "$radiothree" = "$st" ] || [ "$radiothreehq" = "$st" ]|| [ "$fivelive" = "$st" ];
     then
     conkytitle=$(cat ~/.conky/conkyradiotray-ng/onair.txt)
  

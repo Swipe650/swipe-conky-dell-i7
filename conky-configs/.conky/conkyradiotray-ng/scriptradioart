@@ -39,43 +39,43 @@ On_Talkradio()
             then
                 case "05:00" in
                     $onairtime )
-                        onairtime="5:00 - 7:00"
+                        onairtime="5am - 7am"
                 ;;
                 esac
                     else
                         case "01:00" in
                             $onairtime )
-                                onairtime="1:00 - 5:00"
+                                onairtime="1am - 5am"
                         ;;
                         esac
                         case "05:00" in
                             $onairtime )
-                                onairtime="5:00 - 6:30"
+                                onairtime="5am - 6:30am"
                         ;;
                         esac
                         case "06:30" in
                             $onairtime )
-                                onairtime="06:30 - 10:00"
+                                onairtime="6:30am - 10am"
                         ;;
                         esac
                         case "10:00" in
                             $onairtime )
-                                onairtime="10:00 - 13:00"
+                                onairtime="10am - 1pm"
                         ;;
                         esac
                         case "13:00" in
                             $onairtime )
-                                onairtime="13:00 - 16:00"
+                                onairtime="1pm - 4pm"
                         ;;
                         esac
                         case "16:00" in
                             $onairtime )
-                                onairtime="16:00 - 19:00"
+                                onairtime="4pm - 7pm"
                         ;;
                         esac
                         case "19:00" in
                             $onairtime )
-                                onairtime="19:00 - 22:00"
+                                onairtime="7pm - 10pm"
                         ;;
                         esac
         fi

@@ -1,19 +1,219 @@
 #!/bin/bash
 
 #Populate $st with current station, $so with current artist and song and define station name variables
-#st=$(qdbus net.sourceforge.radiotray /net/sourceforge/radiotray net.sourceforge.radiotray.getCurrentRadio)
-#so=$(qdbus net.sourceforge.radiotray /net/sourceforge/radiotray getCurrentMetaData| fold -s -w150)
 st=$(qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state | jq -r '.station')
 so=$(qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state | jq -r '.title' | fold -s -w150)
 
+On_LBC()
+{
+# Get what's on LBC
+        onair=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '//section/div/span//text()' - | tail -c 61)
+        onairtime=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '//section/div/p/span/text()' - | tail -c 25)
+        echo $onair > /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo "   " >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo $onairtime >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+}
+
+On_LBC_News()
+{
+# Get what's on LBC News
+        #onair=$(curl -s https://www.lbcnews.co.uk/ | xmllint --html --nowarning --xpath '//section/div/p/span/a//text()' - | tail -c 61)
+        onair=$(curl -s https://www.lbcnews.co.uk/ | xmllint --html --nowarning --xpath '//section/div/p/span//text()' - | head -c 67)
+        onairtime=$(curl -s https://www.lbcnews.co.uk/ | xmllint --html --nowarning --xpath '//section/div/p/span/text()' - | tail -c 25)
+        echo $onair > /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo "   " >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo $onairtime >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+}
+
+On_Talkradio()
+{
+# Get what's on Talkradio
+        onair=$(curl -s https://talkradio.co.uk/radio/schedule | grep "On Air now" | awk '$0=$2' FS=\> RS=\< | awk 'FNR == 3 {print}')
+        onairtime=$(curl -s https://talkradio.co.uk/radio/schedule | grep "On Air now" | awk '$0=$2' FS=\> RS=\< | awk 'FNR == 1 {print}')
+        #check for Weekend and adjust the morning schedule times 
+        if [ date '+%u' = "6" ] || [ date '+%u' = "7" ]
+            then
+                case "05:00" in
+                    $onairtime )
+                        onairtime="5:00 - 7:00"
+                ;;
+                esac
+                    else
+                        case "01:00" in
+                            $onairtime )
+                                onairtime="1:00 - 5:00"
+                        ;;
+                        esac
+                        case "05:00" in
+                            $onairtime )
+                                onairtime="5:00 - 6:30"
+                        ;;
+                        esac
+                        case "06:30" in
+                            $onairtime )
+                                onairtime="06:30 - 10:00"
+                        ;;
+                        esac
+                        case "10:00" in
+                            $onairtime )
+                                onairtime="10:00 - 13:00"
+                        ;;
+                        esac
+                        case "13:00" in
+                            $onairtime )
+                                onairtime="13:00 - 16:00"
+                        ;;
+                        esac
+                        case "16:00" in
+                            $onairtime )
+                                onairtime="16:00 - 19:00"
+                        ;;
+                        esac
+                        case "19:00" in
+                            $onairtime )
+                                onairtime="19:00 - 22:00"
+                        ;;
+                        esac
+        fi
+        
+        echo $onair > /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo "   " >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo $onairtime >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+}
+
+On_chilloutzone()
+{
+# Get what's on Chillout Zone Plus
+        onair=$(curl -s 'https://chillout.zone:8080/api/v2/history/?format=json&limit=20&offset=0&server=2&t=' | jq -r .results[0].metadata)
+        echo $onair > /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        #Get image url
+        img=$(curl 'https://chillout.zone:8080/api/v2/history/?format=json&limit=20&offset=0&server=2&t=' | jq -r .results[0].img_medium_url)
+        if 
+            [ "$img" = "null" ];
+        then
+            convert ~/.config/radiotray-ng/bookmark_icons/chilloutplus -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        else
+            convert $(curl 'https://chillout.zone:8080/api/v2/history/?format=json&limit=20&offset=0&server=2&t=' | jq -r .results[0].img_medium_url) -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        fi
+}
+
+On_radiothree()
+#Get what's on Radio 3
+{
+        timeslot=$(curl -s https://www.bbc.co.uk/radio3 | xmllint --html --nowarning --xpath '//div[2]/a//time/text()' - )
+
+        prog=$(curl -s https://www.bbc.co.uk/radio3 | xmllint --html --nowarning --xpath '//div[2]/a//h3/text()' - )
+
+        progname=$(curl -s https://www.bbc.co.uk/radio3 | xmllint --html --nowarning --xpath '//div[2]/a//p/text()' - )
+
+        echo "$timeslot" > /home/swipe/.conky/conkyradiotray-ng/onair.txt
+ 
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo " - " >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo "$prog" >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo "$progname" >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+}
+
+On_radiofour()
+#Get what's on Radio 4
+{
+        timeslot=$(curl -s https://www.bbc.co.uk/radio4 | xmllint --html --nowarning --xpath '//div[2]/a//time/text()' - )
+
+        prog=$(curl -s https://www.bbc.co.uk/radio4 | xmllint --html --nowarning --xpath '//div[2]/a//h3/text()' - )
+
+        progname=$(curl -s https://www.bbc.co.uk/radio4 | xmllint --html --nowarning --xpath '//div[2]/a//p/text()' - )
+
+        echo "$timeslot" > /home/swipe/.conky/conkyradiotray-ng/onair.txt
+ 
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo " - " >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo "$prog" >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo "$progname" >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+}
+
+On_radiofourextra()
+#Get what's on Radio 4
+{
+        timeslot=$(curl -s https://www.bbc.co.uk/radio4extra | xmllint --html --nowarning --xpath '//div[2]/a//time/text()' - )
+
+        prog=$(curl -s https://www.bbc.co.uk/radio4extra | xmllint --html --nowarning --xpath '//div[2]/a//h3/text()' - )
+
+        progname=$(curl -s https://www.bbc.co.uk/radio4extra | xmllint --html --nowarning --xpath '//div[2]/a//p/text()' - )
+
+        echo "$timeslot" > /home/swipe/.conky/conkyradiotray-ng/onair.txt
+ 
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo " - " >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo "$prog" >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo "$progname" >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+}
+
+On_fivelive()
+#Get what's on 5live
+{
+        timeslot=$(curl -s https://www.bbc.co.uk/5live | xmllint --html --nowarning --xpath '//div[2]/a//time/text()' - )
+
+        prog=$(curl -s https://www.bbc.co.uk/5live | xmllint --html --nowarning --xpath '//div[2]/a//h3/text()' - )
+
+        progname=$(curl -s https://www.bbc.co.uk/5live | xmllint --html --nowarning --xpath '//div[2]/a//p/text()' - )
+
+        echo "$timeslot" > /home/swipe/.conky/conkyradiotray-ng/onair.txt
+ 
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo " - " >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo "$prog" >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo "$progname" >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+}
+
+On_radioparadise()
+#Get what's on radio paradise and download cover artist
+{
+        #Populate $chk_art with the coverart url
+        chk_art=$(awk -F '[<>]' '/coverart/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml)
+        #Download now.xml and save local copy
+        curl -o ~/.config/radiotray-ng/bookmark_icons/now.xml http://legacy.radioparadise.com/xml/now.xml
+        #Populate $chk_art2 with the coverart url from local copy of now.xml
+        chk_art2=$(awk -F '[<>]' '/coverart/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml)
+            
+            #Check if the coverart urls match and, if not, get new coverart and resize to 115 width
+            if 
+                [ "$chk_art" != "$chk_art2" ]; 
+            then 
+                art=$(awk -F '[<>]' '/coverart/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml)
+                curl -o ~/.config/radiotray-ng/bookmark_icons/rp_art "$art"
+                convert ~/.config/radiotray-ng/bookmark_icons/rp_art -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+            fi
+        
+        rpartist=$(awk -F '[<>]' '/artist/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml)
+        rpsongtitle=$(awk -F '[<>]' '/title/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml)
+        # echo artist and song to 
+        echo "$rpartist" > /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo " - " >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 /home/swipe/.conky/conkyradiotray-ng/onair.txt
+        echo "$rpsongtitle" >> /home/swipe/.conky/conkyradiotray-ng/onair.txt
+}
+
 lbc_uk='LBC UK'
 lbc_london='LBC London'
-plan_rock='Planet Rock'
+lbc_news='LBC News'
+#plan_rock='Planet Rock'
 kfi='KFI'
 twit='TWiT.am'
 fivelive='5live'
 radiofour='Radio 4'
 radiothree='Radio 3'
+radiothreehq='Radio 3 HQ'
 radiofourextra='Radio 4 Extra'
 radiostoke='Radio Stoke'
 radiokent='Radio Kent'
@@ -24,6 +224,7 @@ talksport='talkSPORT'
 talksport2='talkSPORT 2'
 signal2='Signal 2'
 classicfm='Classic FM'
+chilloutplus='Chillout Zone'
 not_playing='(not playing)'
 
 #Check for Radio Paradise or show radiotray image if status='Playing'
@@ -31,7 +232,9 @@ station=${st}
 status=''
 rp='Radio Paradise'
 artist=${so: -0}
-cadena=${st: -14} 
+cadena=${st: -14}
+rpartist=$(awk -F '[<>]' '/artist/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml)
+rpsongtitle=$(awk -F '[<>]' '/title/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml)
 if [ "$artist" = "$status" ]; 
 then
 #title='radiotray icon'
@@ -57,17 +260,26 @@ fi
 #Read the first line of artist_title.txt for artist & song title and populate $title_read
 title_read=$(head -1 ~/.conky/conkyradiotray-ng/artist_title.txt)
 
-#linkMiniature=$(wget -U'Googlebot-Image/1.0' -qO - "www.google.co.uk/search?q=$title\&tbm=isch" | perl -pe 's!.*?<img .*?src="([^"]*)".*!$1!')
+#Read $title and substitute white spaces for '+' and '&' for '%26 so google image search works on the whole string
+title_search=$(echo $title | sed 's/ /+/g' | sed 's/&/%26/g')
 
-linkMiniature=$(wget -U 'Googlebot-Image/1.0' -qO - "www.google.co.uk/search?q=$title\&tbm=isch" | awk -v RS='[[:blank:]]' '/^src=/' | awk 'NR==1' | cut -c6- | sed 's/.$//')
+#Get the URL of $title, define awk record seperator as "src", select the second record with NR==2, cut up to the 6th character, then remove the last 11 characters with sed
+linkMiniature=$(wget -U 'Googlebot-Image/1.0' -qO - "www.google.co.uk/search?q=$title_search\&tbm=isch" | awk -v RS='[[:blank:]]' '/^src=/' | awk 'NR==2' | cut -c6- | sed 's/.\{11\}$//')
+
 
 #Check each station variable and use imagemagick convert command to resize image and copy to ~/.config/radiotray-ng/bookmark_icons/icon
 case "$station" in 
     "$lbc_uk" )
-        convert  ~/.config/radiotray-ng/bookmark_icons/lbc_round -resize 120 ~/.config/radiotray-ng/bookmark_icons/icon
+        convert  ~/.config/radiotray-ng/bookmark_icons/lbc_round -resize 115 ~/.config/radiotray-ng/bookmark_icons/icon
+        On_LBC
+;;
+    "$lbc_news" )
+        convert  ~/.config/radiotray-ng/bookmark_icons/lbc_news -resize 135 ~/.config/radiotray-ng/bookmark_icons/icon
+        On_LBC_News
 ;;
     "$lbc_london" )
         convert ~/.config/radiotray-ng/bookmark_icons/lbc2 -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        On_LBC
 ;;
     "$kfi" )
         convert ~/.config/radiotray-ng/bookmark_icons/kfi -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
@@ -77,15 +289,23 @@ case "$station" in
 ;;
     "$fivelive" )
         convert ~/.config/radiotray-ng/bookmark_icons/5live -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        On_fivelive
 ;;
     "$radiofour" )
         convert ~/.config/radiotray-ng/bookmark_icons/radio4 -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        On_radiofour
 ;;
     "$radiothree" )
         convert ~/.config/radiotray-ng/bookmark_icons/radio3 -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        On_radiothree
+;;
+    "$radiothreehq" )
+        convert ~/.config/radiotray-ng/bookmark_icons/radio3 -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        On_radiothree
 ;;
     "$radiofourextra" )
         convert ~/.config/radiotray-ng/bookmark_icons/radio4extra -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        On_radiofourextra
 ;;
     "$radiostoke" )
         convert ~/.config/radiotray-ng/bookmark_icons/radiostoke -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
@@ -95,6 +315,7 @@ case "$station" in
 ;;
     "$talkradio" )
         convert ~/.config/radiotray-ng/bookmark_icons/talkradio -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        On_Talkradio
 ;;
     "$talksport" )
         convert ~/.config/radiotray-ng/bookmark_icons/talksport -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
@@ -106,31 +327,19 @@ case "$station" in
         convert ~/.config/radiotray-ng/bookmark_icons/signal2 -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon    
 ;;
     "$classicfm" )
-        convert ~/.config/radiotray-ng/bookmark_icons/classicfm_round -resize 120 ~/.config/radiotray-ng/bookmark_icons/icon 
-;;
+        convert ~/.config/radiotray-ng/bookmark_icons/classicfm_round -resize 115 ~/.config/radiotray-ng/bookmark_icons/icon 
+#;;
 #     "$plan_rock" )
 #         convert  ~/.config/radiotray-ng/bookmark_icons/planrock -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
-# ;;
+;;
     "$ragga" )
         convert ~/.config/radiotray-ng/bookmark_icons/ragga -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
 ;;
+    "$chilloutplus" )
+        On_chilloutzone
+;;
     "$radio_paradise" )
-    
-        #Populate $chk_art with the coverart url
-        chk_art=$(awk -F '[<>]' '/coverart/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml)
-        #Download now.xml and save local copy
-        curl -o ~/.config/radiotray-ng/bookmark_icons/now.xml http://legacy.radioparadise.com/xml/now.xml
-        #Populate $chk_art2 with the coverart url from local copy of now.xml
-        chk_art2=$(awk -F '[<>]' '/coverart/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml)
-            
-            #Check if the coverart urls match and, if not, get new coverart and resize to 115 width
-            if 
-                [ "$chk_art" != "$chk_art2" ]; 
-            then 
-                art=$(awk -F '[<>]' '/coverart/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml)
-                wget -O ~/.config/radiotray-ng/bookmark_icons/rp_art "$art"
-                convert ~/.config/radiotray-ng/bookmark_icons/rp_art -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
-            fi
+        On_radioparadise
 ;;
     #If status = 'not playing' don't do anything
     "$not_playing" )
@@ -148,6 +357,20 @@ case "$station" in
 ;;
 esac
 
+# Show artist and title info or "No Info"
+if [ "$lbc_uk" = "$st" ] || [ "$lbc_news" = "$st" ] || [ "$lbc_london" = "$st" ] || [ "$talkradio" = "$st" ] || [ "$radiothree" = "$st" ] || [ "$radiothreehq" = "$st" ] || [ "$radiofour" = "$st" ] || [ "$radiofourextra" = "$st" ]  || [ "$fivelive" = "$st" ] || [ "$radio_paradise" = "$st" ] || [ "$chilloutplus" = "$st" ];
+    then
+    conkytitle=$(cat ~/.conky/conkyradiotray-ng/onair.txt)
+ 
+elif [ "$kfi" = "$st" ] || [ "$playing" = "$so" ]
+    then 
+    conkytitle='No info'
+    
+else 
+    conkytitle=$so 
+fi
+
+
+echo "$conkytitle"
+
 exit 0
-
-

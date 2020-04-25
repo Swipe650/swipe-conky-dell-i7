@@ -309,15 +309,15 @@ case "$station" in
 ;;
     "$signal2" )
         convert ~/.config/radiotray-ng/bookmark_icons/signal2 -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon    
-;;
-    "$classicfm" )
-        convert ~/.config/radiotray-ng/bookmark_icons/classicfm_round -resize 115 ~/.config/radiotray-ng/bookmark_icons/icon 
+# ;;
+#     "$classicfm" )
+#         convert ~/.config/radiotray-ng/bookmark_icons/classicfm_round -resize 115 ~/.config/radiotray-ng/bookmark_icons/icon 
 #;;
 #     "$plan_rock" )
 #         convert  ~/.config/radiotray-ng/bookmark_icons/planrock -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
-;;
-    "$audiophile" )
-        convert ~/.config/radiotray-ng/bookmark_icons/Audiophile_Classical -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+# ;;
+#     "$audiophile" )
+#         convert ~/.config/radiotray-ng/bookmark_icons/Audiophile_Classical -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
 ;;
     "$chilloutplus" )
         On_chilloutzone

@@ -16,8 +16,12 @@ Onair_txt()
 On_LBC()
 {
 # Get what's on LBC
-        #onair=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '//section/div/span//text()' - | tail -c 61)
-        onair=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '//section/div/p/span/a/text()' - | tail -c 61)
+        #Query if guest presenter schedule is empty
+        onair=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '//section/div/span//text()' - | tail -c 61) 
+        if [[ -z "$onair" ]]; then
+        #Query normal presenter schedule
+        onair=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '//section/div/p/span/a//text()' - | tail -c 61)
+        fi
         onairtime=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '//section/div/p/span/text()' - | tail -c 25)
         Onair_txt
 }
@@ -31,75 +35,21 @@ On_LBC_News()
         Onair_txt
 }
 
+
+
 On_Talkradio()
 {
-# Get what's on Talkradio
-        onair=$(curl -s https://talkradio.co.uk/radio/schedule | grep "On Air now" | awk '$0=$2' FS=\> RS=\< | awk 'FNR == 3 {print}')
-        onairtime=$(curl -s https://talkradio.co.uk/radio/schedule | grep "On Air now" | awk '$0=$2' FS=\> RS=\< | awk 'FNR == 1 {print}')
-    
-        case "01:00" in
-            $onairtime )
-                onairtime="1am - 5am"
-        ;;
-        esac
-        case "05:00" in
-            $onairtime )
-                onairtime="5am - 6:30am"
-        ;;
-        esac
-        
-        case "06:30" in
-            $onairtime )
-                onairtime="6:30am - 10am"
-        ;;
-        esac
-        case "10:00" in
-            $onairtime )
-                onairtime="10am - 1pm"
-        ;;
-        esac
-        case "13:00" in
-            $onairtime )
-                onairtime="1pm - 4pm"
-        ;;
-        esac
-        case "16:00" in
-            $onairtime )
-                onairtime="4pm - 7pm"
-        ;;
-        esac
-        case "17:00" in
-            $onairtime )
-                onairtime="5pm - 7pm"
-        ;;
-        esac
-        case "19:00" in
-            $onairtime )
-                onairtime="7pm - 10pm"
-        ;;
-        esac
-        case "22:00" in
-            $onairtime )
-                onairtime="10pm - 1am"
-        ;;
-        esac
-                    
-#check for Weekend and adjust the morning schedule times
+# # Get what's on Talkradio
+        onair=$(curl -s https://talk.tv/popout-player?selectedStation=talkradio | xmllint --html --nowarning --xpath '/html/body/div/div/div/div[3]/div/div/div/div[2]/div/div/div/div/div[3]/div/span/text()' - | sed 's/amp;//')
+        onairtime=$(curl -s https://talk.tv/popout-player?selectedStation=talkradio | xmllint --html --nowarning --xpath '/html/body/div/div/div/div[3]/div/div/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/div/div/div/span/text()'  - | tail -c 12)
+        Onair_txt
+}
 
-        if [ $(date '+%u') = "6" ] || [ $(date '+%u') = "7" ]
-            then
-                case "05:00" in
-                    $onairtime )
-                        onairtime="5am - 7am"
-                ;;
-                esac
-                case "07:00" in
-                    $onairtime )
-                        onairtime="7am - 10am"
-                ;;
-                esac
-        fi
-        
+On_Timesradio()
+{
+# # Get what's on Timesradio - grep characters between > and </h1> and between > and </p>
+        onair=$(curl -s https://www.thetimes.co.uk/radio/live | xmllint --html --nowarning --xpath '/html/body/section/div/div/div[2]/div[1]/div[1]/main/h1' - | grep -o -P '(?<=>).*(?=</h1>)')
+        onairtime=$(curl -s https://www.thetimes.co.uk/radio/live | xmllint --html --nowarning --xpath '/html/body/section/div/div/div[2]/div[1]/div[1]/main/div/div/p' - | grep -o -P '(?<=>).*(?=</p>)')
         Onair_txt
 }
 
@@ -184,6 +134,8 @@ On_radioparadise()
         
         rpartist=$(awk -F '[<>]' '/artist/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml | sed 's/amp;//')
         rpsongtitle=$(awk -F '[<>]' '/title/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml | sed 's/amp;//')
+        #rpartist=$(awk -F '[<>]' '/artist/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml | sed 's/amp;//')
+        #rpsongtitle=$(awk -F '[<>]' '/title/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml | sed 's/amp;//')
         # echo artist and song to 
         echo "$rpartist" > ~/.conky/conkyradiotray-ng/onair.txt
         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
@@ -195,6 +147,7 @@ On_radioparadise()
 lbc_uk='LBC UK'
 lbc_london='LBC London'
 lbc_news='LBC News'
+times_radio='Times Radio'
 #plan_rock='Planet Rock'
 kfi='KFI'
 twit='TWiT.am'
@@ -210,7 +163,7 @@ ragga='Raggakings'
 talkradio='TalkRadio'
 talksport='talkSPORT'
 talksport2='talkSPORT 2'
-signal2='Signal 2'
+bloomr='Bloomberg Radio'
 #classicfm='Classic FM'
 chilloutplus='Chillout Zone'
 #audiophile='Audiophile Classical'
@@ -228,7 +181,8 @@ if [ "$artist" = "$status" ];
 then
 #title='radiotray icon'
 #title='hashtag/radiotray'
-title='radio tower icon white'
+#title='radio tower icon white'
+title='Radiotray-NG Alternatives in 2021 - community voted on SaaSHub'
 #title='black'
 elif [ "$cadena" = "$rp" ]; 
 then 
@@ -270,6 +224,10 @@ case "$station" in
         convert ~/.config/radiotray-ng/bookmark_icons/lbc2 -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
         On_LBC
 ;;
+    "$times_radio" )
+        convert ~/.config/radiotray-ng/bookmark_icons/timesradio -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        On_Timesradio
+;;
     "$kfi" )
         convert ~/.config/radiotray-ng/bookmark_icons/kfi -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
 ;;
@@ -304,7 +262,7 @@ case "$station" in
         convert ~/.config/radiotray-ng/bookmark_icons/radiokent -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
 ;;
     "$talkradio" )
-        convert ~/.config/radiotray-ng/bookmark_icons/talkradio -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        convert ~/.config/radiotray-ng/bookmark_icons/TalkRadio -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
         On_Talkradio
 ;;
     "$talksport" )
@@ -313,9 +271,9 @@ case "$station" in
     "$talksport2" )
         convert ~/.config/radiotray-ng/bookmark_icons/talksport2 -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
 ;;
-    "$signal2" )
-        convert ~/.config/radiotray-ng/bookmark_icons/signal2 -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon    
-# ;;
+    "$bloomr" )
+        convert ~/.config/radiotray-ng/bookmark_icons/br -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon    
+;;
 #     "$classicfm" )
 #         convert ~/.config/radiotray-ng/bookmark_icons/classicfm_round -resize 115 ~/.config/radiotray-ng/bookmark_icons/icon 
 #;;
@@ -324,7 +282,7 @@ case "$station" in
 # ;;
 #     "$audiophile" )
 #         convert ~/.config/radiotray-ng/bookmark_icons/Audiophile_Classical -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
-;;
+#;;
     "$chilloutplus" )
         On_chilloutzone
 ;;
@@ -348,7 +306,7 @@ case "$station" in
 esac
 
 # Show artist and title info or "No Info"
-if [ "$lbc_uk" = "$st" ] || [ "$lbc_news" = "$st" ] || [ "$lbc_london" = "$st" ] || [ "$talkradio" = "$st" ] || [ "$radio_paradise" = "$st" ] || [ "$chilloutplus" = "$st" ] || [ "$radiofour" = "$st" ] || [ "$radiofourextra" = "$st" ] || [ "$radiothree" = "$st" ] || [ "$radiothreehq" = "$st" ] || [ "$fivelive" = "$st" ] || [ "$radiostoke" = "$st" ] ;
+if [ "$lbc_uk" = "$st" ] || [ "$lbc_news" = "$st" ] || [ "$lbc_london" = "$st" ] || [ "$talkradio" = "$st" ] || [ "$radio_paradise" = "$st" ] || [ "$chilloutplus" = "$st" ] || [ "$radiofour" = "$st" ] || [ "$radiofourextra" = "$st" ] || [ "$radiothree" = "$st" ] || [ "$radiothreehq" = "$st" ] || [ "$fivelive" = "$st" ] || [ "$radiostoke" = "$st" ] || [ "$times_radio" = "$st" ];
     then
     conkytitle=$(cat ~/.conky/conkyradiotray-ng/onair.txt)
  

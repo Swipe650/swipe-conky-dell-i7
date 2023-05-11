@@ -7,17 +7,17 @@ total_run_times 0
 own_window yes
 #own_window_type normal
 own_window_type dock
-own_window_transparent no
+own_window_transparent yes
 own_window_argb_visual yes
-own_window_argb_value 100
+own_window_argb_value 20
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 #own_window_hints decorated,below,sticky,skip_taskbar,skip_pager
 double_buffer yes
 #default_bar_size 0 6
 
 #maximum_height 200
-width 210
-minimum_size 270
+width 260
+minimum_size 250
 draw_shades no
 draw_outline no
 draw_borders no
@@ -25,10 +25,12 @@ draw_graph_borders yes
 default_color white
 default_shade_color red
 default_outline_color green
-alignment top_left
-#alignment bottom_right
-gap_x 10
-gap_y 30
+#alignment top_left
+alignment bottom_right
+#gap_x 10
+#gap_y 30
+gap_x 7
+gap_y 40
 no_buffers yes
 uppercase no
 cpu_avg_samples 2
@@ -48,12 +50,13 @@ ${voffset 10}${color #FFC433}${font Open Sans:size=10:bold}Station:${font}${colo
 
 ${font Open Sans:size=9:bold}${color #ffffff}${execi 10 qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state | jq -r '.station'}
 
-${voffset 26}${color #FFC433}${font Open Sans:size=10:bold}Artist & Title:${font}${color}
+${voffset 15}${color #FFC433}${font Open Sans:size=10:bold}Artist & Title:${font}${color}
 
 ${font Open Sans:size=9:bold}${color #ffffff}${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradioart | fold -s -w 40}${color}${image ~/.config/radiotray-ng/bookmark_icons/icon -p 125,35 -f 1}${endif}
 $else${color #696969}${font Open Sans:size=10:bold}No activity${font}$endif
-${if_existing /home/swipe/.conky/muted.png}${image ~/.conky/muted.png -p 120,860 -s 40x40 -f 1}$endif
-${voffset -82}${font Open Sans:size=12:bold}${color}${if_match "${exec pidof -x toggle_mute3_rtng}" != ""}${execpi 1 cat ~/.conkytimer}${else}$endif
+
+${voffset -7}${if_existing /home/swipe/.conky/muted.png}${image ~/.conky/muted.png -p 120,860 -s 40x40 -f 1}$endif
+${voffset -125}${font Open Sans:size=12:bold}${color}${if_match "${exec pidof -x toggle_mute3_rtng}" != ""}${execpi 1 cat ~/.conkytimer}${else}$endif
 ${image ~/.conky/muted.png -p 80,90 -s 40x40 -f 1}${voffset -210}${font Open Sans:size=10:bold}#${execpi 1 cat ~/.conkytimer }
 
-${voffset -125}
+${voffset -140}

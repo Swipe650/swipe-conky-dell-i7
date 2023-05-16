@@ -122,6 +122,9 @@ On_morow()
         echo " - " >> ~/.conky/conkyradiotray-ng/onair.txt
         truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
         echo "$so" >> ~/.conky/conkyradiotray-ng/onair.txt
+        echo "$title" | fold -s -w80 > ~/.conky/conkyradiotray-ng/artist_title.txt
+        wget -qO miniatureGoogleImage "$linkMiniature"
+        convert ~/miniatureGoogleImage -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
 }
 
 

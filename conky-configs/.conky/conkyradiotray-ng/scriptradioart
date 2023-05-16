@@ -3,6 +3,7 @@
 #Populate $st with current station, $so with current artist and song and define station name variables
 st=$(qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state | jq -r '.station')
 so=$(qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state | jq -r '.title' | fold -s -w150)
+ar=$(qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state | jq -r '.artist')
 
 Onair_txt()
 {
@@ -39,10 +40,11 @@ On_LBC_News()
 
 On_Talkradio()
 {
-# # Get what's on Talkradio
-        onair=$(curl -s https://talk.tv/popout-player?selectedStation=talkradio | xmllint --html --nowarning --xpath '/html/body/div/div/div/div[3]/div/div/div/div[2]/div/div/div/div/div[3]/div/span/text()' - | sed 's/amp;//')
-        onairtime=$(curl -s https://talk.tv/popout-player?selectedStation=talkradio | xmllint --html --nowarning --xpath '/html/body/div/div/div/div[3]/div/div/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/div/div/div/span/text()'  - | tail -c 12)
-        Onair_txt
+# # # Get what's on Talkradio
+#         onair=$(curl -s https://talk.tv/popout-player?selectedStation=talkradio | xmllint --html --nowarning --xpath '/html/body/div/div/div/div[3]/div/div/div/div[2]/div/div/div/div/div[3]/div/span/text()' - | sed 's/amp;//')
+#         onairtime=$(curl -s https://talk.tv/popout-player?selectedStation=talkradio | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/div/span/span/span/text()'  - | tail -c 12)
+         onair="No info"
+         Onair_txt
 }
 
 On_Timesradio()
@@ -113,6 +115,16 @@ onair=$(curl -s https://www.bbc.co.uk/sounds/play/live:bbc_radio_stoke | xmllint
 echo "$onair" > ~/.conky/conkyradiotray-ng/onair.txt
 }
 
+On_morow()
+{
+        echo "$ar" > ~/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
+        echo " - " >> ~/.conky/conkyradiotray-ng/onair.txt
+        truncate --size -1 ~/.conky/conkyradiotray-ng/onair.txt
+        echo "$so" >> ~/.conky/conkyradiotray-ng/onair.txt
+}
+
+
 On_radioparadise()
 #Get what's on radio paradise and download cover artist
 {
@@ -166,6 +178,7 @@ talksport2='talkSPORT 2'
 bloomr='Bloomberg Radio'
 #classicfm='Classic FM'
 chilloutplus='Chillout Zone'
+morow='Morow'
 #audiophile='Audiophile Classical'
 not_playing='(not playing)'
 
@@ -182,7 +195,7 @@ then
 #title='radiotray icon'
 #title='hashtag/radiotray'
 #title='radio tower icon white'
-title='Radiotray-NG Alternatives in 2021 - community voted on SaaSHub'
+title='free white radio tower icon-18'
 #title='black'
 elif [ "$cadena" = "$rp" ]; 
 then 
@@ -286,6 +299,9 @@ case "$station" in
     "$chilloutplus" )
         On_chilloutzone
 ;;
+    "$morow" )
+        On_morow
+;;
     "$radio_paradise" )
         On_radioparadise
 ;;
@@ -306,7 +322,7 @@ case "$station" in
 esac
 
 # Show artist and title info or "No Info"
-if [ "$lbc_uk" = "$st" ] || [ "$lbc_news" = "$st" ] || [ "$lbc_london" = "$st" ] || [ "$talkradio" = "$st" ] || [ "$radio_paradise" = "$st" ] || [ "$chilloutplus" = "$st" ] || [ "$radiofour" = "$st" ] || [ "$radiofourextra" = "$st" ] || [ "$radiothree" = "$st" ] || [ "$radiothreehq" = "$st" ] || [ "$fivelive" = "$st" ] || [ "$radiostoke" = "$st" ] || [ "$times_radio" = "$st" ];
+if [ "$lbc_uk" = "$st" ] || [ "$lbc_news" = "$st" ] || [ "$lbc_london" = "$st" ] || [ "$talkradio" = "$st" ] || [ "$radio_paradise" = "$st" ] || [ "$chilloutplus" = "$st" ] || [ "$radiofour" = "$st" ] || [ "$radiofourextra" = "$st" ] || [ "$radiothree" = "$st" ] || [ "$radiothreehq" = "$st" ] || [ "$fivelive" = "$st" ] || [ "$radiostoke" = "$st" ] || [ "$times_radio" = "$st" ]  || [ "$morow" = "$st" ];
     then
     conkytitle=$(cat ~/.conky/conkyradiotray-ng/onair.txt)
  
@@ -319,6 +335,6 @@ else
 fi
 
 
-echo "$conkytitle"
+echo "$conkytitle" 
 
 exit 0

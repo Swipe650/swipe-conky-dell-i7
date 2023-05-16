@@ -46,7 +46,7 @@ ${voffset 12}${goto 73}Artist:
 ${voffset -13}${goto 73}${color2}             ${exec ~/.conky/conkyspotify/spotify_info_artist}${color}
 ${voffset 12}${goto 73}Album: 
 ${voffset -13}${goto 73}${color2}              ${exec ~/.conky/conkyspotify/spotify_info_album | fold -s -w 28}${color} 
-${voffset -160}
+${voffset -140}
 ${exec ~/.conky/conkyspotify/spotify_album_cover}
 ${image ~/.conky/conkyspotify/last_album_pic.png -p 0,20 -s 60x60}
 

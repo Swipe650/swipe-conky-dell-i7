@@ -1,0 +1,11 @@
+#!/bin/bash
+
+first_album=""
+
+	new_album=`playerctl metadata --format '{{ album }}'`
+	if [ "$new_album" != "$first_album" ]
+	then
+		first_album="$new_album"
+		echo "$new_album"
+	fi
+	sleep 1

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+first_title=""
+
+	new_title=`playerctl metadata --format '{{ title }}'`
+	if [ "$new_title" != "$first_title" ] 
+	then
+		first_title="$new_title"
+		echo "$new_title"
+	fi
+	sleep 1
+

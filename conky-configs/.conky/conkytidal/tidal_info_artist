@@ -1,0 +1,11 @@
+#!/bin/bash
+
+first_artist=""
+
+	new_artist=`playerctl metadata --format '{{ artist }}'`
+	if [ "$new_artist" != "$first_artist" ] 
+	then
+		first_artist="$new_artist"
+		echo "$new_artist"
+	fi
+	sleep 1

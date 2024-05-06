@@ -2,7 +2,8 @@
 
 first_cover=""
 
-	new_cover=`playerctl metadata --format '{{ mpris:artUrl }}'`
+	current_instance=`playerctl metadata -l | grep chromium.instance9`
+	new_cover=`playerctl metadata -p $current_instance --format '{{ mpris:artUrl }}'`
 	if [ "$new_cover" != "$first_cover" ]
 	then
 		first_cover="$new_cover"

@@ -2,7 +2,8 @@
 
 first_artist=""
 
-	new_artist=`playerctl metadata --format '{{ artist }}'`
+	current_instance=`playerctl metadata -l | grep chromium.instance9`
+	new_artist=`playerctl metadata -p $current_instance --format '{{ artist }}'`
 	if [ "$new_artist" != "$first_artist" ] 
 	then
 		first_artist="$new_artist"

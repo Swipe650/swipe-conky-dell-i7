@@ -2,7 +2,8 @@
 
 first_album=""
 
-	new_album=`playerctl metadata --format '{{ album }}'`
+	current_instance=`playerctl metadata -l | grep chromium.instance9`
+	new_album=`playerctl metadata -p $current_instance --format '{{ album }}'`
 	if [ "$new_album" != "$first_album" ]
 	then
 		first_album="$new_album"

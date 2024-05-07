@@ -2,13 +2,10 @@
 
 first_cover=""
 
-	#current_instance=`playerctl metadata -l | grep chromium.instance9`
-	current_instance=`playerctl metadata`
-	new_cover=`playerctl metadata -p $current_instance --format '{{ mpris:artUrl }}'`
+	new_cover=`playerctl metadata --format '{{ mpris:artUrl }}'`
 	if [ "$new_cover" != "$first_cover" ]
 	then
 		first_cover="$new_cover"
-#		wget -O ~/.conky/conkytidal/last_album_pic.png $new_cover
 		convert $new_cover ~/.conky/conkytidal/last_album_pic.png
 	fi
 	sleep 1

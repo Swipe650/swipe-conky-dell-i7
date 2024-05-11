@@ -22,7 +22,7 @@ draw_shades no
 draw_outline no
 draw_borders no
 draw_graph_borders yes
-default_color white
+default_color FFFFFF
 default_shade_color red
 default_outline_color green
 #alignment top_left
@@ -40,11 +40,11 @@ imlib_cache_size 0
 TEXT
 
 ${if_running tidal-hifi}${voffset -5}${font Liberation Sans:style=Bold:size=8}
-${voffset -6}${goto 73}${color2}Title: 
+${voffset -6}${goto 73}Title: 
 ${voffset -13}${goto 73}${color2}            ${exec ~/.conky/conkytidal/tidal_info_title}${color}
-${voffset 12}${goto 73}${color2}Artist: 
+${voffset 12}${goto 73}Artist: 
 ${voffset -13}${goto 73}${color2}             ${exec ~/.conky/conkytidal/tidal_info_artist}${color}
-${voffset 12}${goto 73}${color2}Album: 
+${voffset 12}${goto 73}Album: 
 ${voffset -13}${goto 73}${color2}              ${exec ~/.conky/conkytidal/tidal_info_album | fold -s -w 28}${color} 
 ${voffset -160}
 ${exec ~/.conky/conkytidal/tidal_album_cover}

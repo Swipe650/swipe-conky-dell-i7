@@ -41,9 +41,8 @@ On_LBC_News()
 On_Talkradio()
 {
 # # # Get what's on Talkradio
-#         onair=$(curl -s https://talk.tv/popout-player?selectedStation=talkradio | xmllint --html --nowarning --xpath '/html/body/div/div/div/div[3]/div/div/div/div[2]/div/div/div/div/div[3]/div/span/text()' - | sed 's/amp;//')
-#         onairtime=$(curl -s https://talk.tv/popout-player?selectedStation=talkradio | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/div/span/span/span/text()'  - | tail -c 12)
-         onair="No info"
+         onair=$(curl -s https://talk.tv/play/talkradio | xmllint --html --nowarning --xpath '/html/body/main/div[1]/div[2]/div[2]/div[3]/text()' - | sed 's/amp;//')
+         onairtime=$(curl -s https://talk.tv/play/talkradio | xmllint --html --nowarning --xpath '/html/body/main/div[1]/div[2]/div[2]/div[2]/div[2]/text()' - | tail -c 31 | cut -c 1-18)
          Onair_txt
 }
 
@@ -334,10 +333,12 @@ elif [ "$kfi" = "$st" ] || [ "$playing" = "$so" ]
     conkytitle='No info'
     
 else 
-    conkytitle=$so 
+    conkytitle=$so
+    conkyartist=$ar
+    conkyspacer=" - "
 fi
 
 
-echo "$conkytitle" 
+echo "$conkyartist""$conkyspacer""$conkytitle"
 
 exit 0

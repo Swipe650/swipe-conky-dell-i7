@@ -56,7 +56,7 @@ ${font Open Sans:size=9:bold}${color #ffffff}${execi 10 /home/swipe/.conky/conky
 $else${color #696969}${font Open Sans:size=10:bold}No activity${font}$endif
 
 ${voffset -7}${if_existing /home/swipe/.conky/muted.png}${image ~/.conky/muted.png -p 120,860 -s 40x40 -f 1}$endif
-${voffset -125}${font Open Sans:size=12:bold}${color}${if_match "${exec pidof -x toggle_mute3_rtng}" != ""}${execpi 1 cat ~/.conkytimer}${else}$endif
+${voffset -125}${font Open Sans:size=12:bold}${color}${if_match "${exec pidof -x toggle_mute3_rtng.sh}" != ""}${execpi 1 cat ~/.conkytimer}${else}$endif
 ${image ~/.conky/muted.png -p 80,90 -s 40x40 -f 1}${voffset -210}${font Open Sans:size=10:bold}#${execpi 1 cat ~/.conkytimer }
 
 ${voffset -140}

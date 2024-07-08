@@ -44,10 +44,16 @@ On_Talkradio()
          onair=$(curl -s https://talk.tv/play/talkradio | xmllint --html --nowarning --xpath '/html/body/main/div[1]/div[2]/div[2]/div[3]/text()' - | sed 's/amp;//')
          #onairtime=$(curl -s https://talk.tv/play/talkradio | xmllint --html --nowarning --xpath '/html/body/main/div[1]/div[2]/div[2]/div[2]/div[2]/text()' - | tail -c 31 | cut -c 1-19) 
          
+         # Check for BST or GMT
+         if [ $(date +%Z) = "BST" ]
+         then ST=1
+         else ST=0
+         fi
+         
          onairtime1=$(curl -s https://talk.tv/play/talkradio | xmllint --html --nowarning --xpath '/html/body/main/div[1]/div[2]/div[2]/div[2]/div[2]/text()' - | tail -c 31 | cut -c 1-8)
          onairtime2=$(curl -s https://talk.tv/play/talkradio | xmllint --html --nowarning --xpath '/html/body/main/div[1]/div[2]/div[2]/div[2]/div[2]/text()' - | tail -c 31 | cut -c 11-20)
-         onairtime3=$(date -d "$onairtime1 +1 hour" "+%l:%M%P") # +0 for GMT +1 for BST
-         onairtime4=$(date -d "$onairtime2 +1 hour" "+%l:%M%P") # +0 for GMT +1 for BST
+         onairtime3=$(date -d "$onairtime1 +$ST hour" "+%l:%M%P")
+         onairtime4=$(date -d "$onairtime2 +$ST hour" "+%l:%M%P") 
          onairtime="$onairtime3 "-" $onairtime4"
          Onair_txt
 }

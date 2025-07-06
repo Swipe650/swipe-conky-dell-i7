@@ -2,9 +2,10 @@
 
 first_cover=""
 
-	#new_cover=`playerctl -i plasma-browser-integration metadata --format '{{ mpris:artUrl }}'`
+	new_cover=`playerctl -i plasma-browser-integration metadata --format '{{ mpris:artUrl }}'`
 	#new_cover=`playerctl -p tidal-hifi metadata --format '{{ mpris:artUrl }}'`
-	new_cover=`playerctl -p "$(playerctl -l | awk 'NR==3')" metadata --format '{{ mpris:artUrl }}'`
+	#new_cover=`playerctl -p "$(playerctl -l | awk 'NR==3')" metadata --format '{{ mpris:artUrl }}'`
+	#new_cover=`playerctl -p playerctld metadata --format '{{ mpris:artUrl }}'`
 	if [ "$new_cover" != "$first_cover" ]
 	then
 		first_cover="$new_cover"

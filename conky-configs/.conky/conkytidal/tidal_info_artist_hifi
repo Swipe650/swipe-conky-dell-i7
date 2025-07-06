@@ -2,9 +2,10 @@
 
 first_artist=""
 
-	#new_artist=`playerctl -i plasma-browser-integration metadata --format '{{ artist }}'`
+	new_artist=`playerctl -i plasma-browser-integration metadata --format '{{ artist }}'`
 	#new_artist=`playerctl -p tidal-hifi metadata --format '{{ artist }}'`
-	new_artist=`playerctl -p "$(playerctl -l | awk 'NR==3')" metadata --format '{{ artist }}'`
+	#new_artist=`playerctl -p "$(playerctl -l | awk 'NR==3')" metadata --format '{{ artist }}'`
+	#new_artist=`playerctl -p playerctld metadata --format '{{ artist }}'`
 	if [ "$new_artist" != "$first_artist" ] 
 	then
 		first_artist="$new_artist"

@@ -150,6 +150,8 @@ ragga='Raggakings'
 talkradio='TalkRadio'
 talksport='talkSPORT'
 talksport2='talkSPORT 2'
+fivelive='BBC Radio 5 Live'
+radiostoke='BBC Radio Stoke'
 bloomr='Bloomberg Radio'
 #classicfm='Classic FM'
 morow='Morow'
@@ -228,6 +230,14 @@ case "$station" in
     "$talksport2" )
         convert ~/.config/radiotray-ng/bookmark_icons/talksport2 -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
         On_Talksport2
+;;
+    "$fivelive" )
+        convert ~/.config/radiotray-ng/bookmark_icons/5live -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+       
+;;
+    "$radiostoke" )
+        convert ~/.config/radiotray-ng/bookmark_icons/radiostoke -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        
 ;;
     "$bloomr" )
         convert ~/.config/radiotray-ng/bookmark_icons/br -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon    

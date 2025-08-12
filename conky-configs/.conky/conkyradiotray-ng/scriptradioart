@@ -41,7 +41,7 @@ On_LBC_News()
 On_Talkradio()
 {
 # # # Get what's on Talkradio
-         onair=$(curl -s https://talk.tv/play/talkradio | xmllint --html --nowarning --xpath '/html/body/main/div[1]/div[2]/div[2]/div[3]/text()' - | sed 's/amp;//')
+         onair=$(curl -s https://talk.tv/radio-player-content | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[2]/div/span' - | tail -c 40 | awk -F'[><]' '{print $2}')
          #onairtime=$(curl -s https://talk.tv/play/talkradio | xmllint --html --nowarning --xpath '/html/body/main/div[1]/div[2]/div[2]/div[2]/div[2]/text()' - | tail -c 31 | cut -c 1-19) 
          
          # Check for BST or GMT
@@ -50,11 +50,14 @@ On_Talkradio()
          else ST=0
          fi
          
-         onairtime1=$(curl -s https://talk.tv/play/talkradio | xmllint --html --nowarning --xpath '/html/body/main/div[1]/div[2]/div[2]/div[2]/div[2]/text()' - | tail -c 31 | cut -c 1-8)
-         onairtime2=$(curl -s https://talk.tv/play/talkradio | xmllint --html --nowarning --xpath '/html/body/main/div[1]/div[2]/div[2]/div[2]/div[2]/text()' - | tail -c 31 | cut -c 11-20)
-         onairtime3=$(date -d "$onairtime1 +$ST hour" "+%l:%M%P")
-         onairtime4=$(date -d "$onairtime2 +$ST hour" "+%l:%M%P") 
-         onairtime="$onairtime3 "-" $onairtime4"
+#          onairtime1=$(curl -s https://talk.tv/radio-player-content | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[1]/div/div/div[2]/div/span/text()' - | tail -c 31 | cut -c 1-8)
+#          onairtime2=$(curl -s https://talk.tv/radio-player-content | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[1]/div/div/div[2]/div/span/text()' - | tail -c 31 | cut -c 11-20)
+#          onairtime3=$(date -d "$onairtime1 +$ST hour" "+%l:%M%P")
+#          onairtime4=$(date -d "$onairtime2 +$ST hour" "+%l:%M%P") 
+#          onairtime="$onairtime3 "-" $onairtime4"
+        
+         onairtime=$(curl -s https://talk.tv/radio-player-content | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[1]/div/div/div[2]/div/span' - | tail -c 40 | awk -F'[><]' '{print $2}')
+
          Onair_txt
 }
 
@@ -263,7 +266,7 @@ case "$station" in
 esac
 
 # Show artist and title info or "No Info"
-if [ "$lbc_uk" = "$st" ] || [ "$lbc_news" = "$st" ] || [ "$lbc_london" = "$st" ] || [ "$radio_paradise" = "$st" ] || [ "$talksport" = "$st" ] || [ "$times_radio" = "$st" ] ; #|| [ "$talkradio" = "$st" ] || [ "$talksport2" = "$st" ] 
+if [ "$lbc_uk" = "$st" ] || [ "$lbc_news" = "$st" ] || [ "$lbc_london" = "$st" ] || [ "$radio_paradise" = "$st" ] || [ "$talksport" = "$st" ] || [ "$times_radio" = "$st" ] || [ "$talkradio" = "$st" ]; #|| [ "$talksport2" = "$st" ] 
     then
     conkytitle=$(cat ~/.conky/conkyradiotray-ng/onair.txt)
  

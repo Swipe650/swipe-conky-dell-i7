@@ -41,14 +41,14 @@ On_LBC_News()
 On_Talkradio()
 {
 # # # Get what's on Talkradio
-         onair=$(curl -s https://talk.tv/radio-player-content | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[2]/div/span' - | tail -c 40 | awk -F'[><]' '{print $2}')
+         onair=$(curl -s https://talk.tv/radio-player-content | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[2]/div/span' - | tail -c 40 | awk -F'[><]' '{print $2}'| sed 's/^Morning Glory with //')
          #onairtime=$(curl -s https://talk.tv/play/talkradio | xmllint --html --nowarning --xpath '/html/body/main/div[1]/div[2]/div[2]/div[2]/div[2]/text()' - | tail -c 31 | cut -c 1-19) 
          
          # Check for BST or GMT
-         if [ $(date +%Z) = "BST" ]
-         then ST=1
-         else ST=0
-         fi
+#          if [ $(date +%Z) = "BST" ]
+#          then ST=1
+#          else ST=0
+#          fi
          
 #          onairtime1=$(curl -s https://talk.tv/radio-player-content | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[1]/div/div/div[2]/div/span/text()' - | tail -c 31 | cut -c 1-8)
 #          onairtime2=$(curl -s https://talk.tv/radio-player-content | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[1]/div/div/div[2]/div/span/text()' - | tail -c 31 | cut -c 11-20)
@@ -57,7 +57,6 @@ On_Talkradio()
 #          onairtime="$onairtime3 "-" $onairtime4"
         
          onairtime=$(curl -s https://talk.tv/radio-player-content | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[1]/div/div/div[2]/div/span' - | tail -c 40 | awk -F'[><]' '{print $2}')
-
          Onair_txt
 }
 

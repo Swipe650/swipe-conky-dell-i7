@@ -260,7 +260,7 @@ case "$station" in
         echo "$ar" - "$so" | fold -s -w80 > ~/.conky/conkyradiotray-ng/artist_title.txt
         wget -qO miniatureGoogleImage "$linkMiniature"
         convert ~/miniatureGoogleImage -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
-        rm /home/swipe/miniatureGoogleImage
+        # rm /home/swipe/miniatureGoogleImage
         fi
 ;;
 esac

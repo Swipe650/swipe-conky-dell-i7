@@ -7,7 +7,7 @@ total_run_times 0
 own_window yes
 own_window_type normal
 #own_window_type dock
-own_window_transparent yes
+#own_window_transparent yes
 own_window_argb_visual yes
 own_window_argb_value 20
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
@@ -15,7 +15,7 @@ own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 double_buffer yes
 #default_bar_size 0 6
 
-maximum_height 200
+#maximum_height 200
 width 260
 minimum_size 250
 draw_shades no
@@ -27,10 +27,8 @@ default_shade_color red
 default_outline_color green
 #alignment top_left
 alignment bottom_right
-#gap_x 10
-#gap_y 30
 gap_x 7
-gap_y 20
+gap_y 50
 no_buffers yes
 uppercase no
 cpu_avg_samples 2
@@ -43,18 +41,16 @@ TEXT
 # RADIOTRAY
 ${if_running radiotray-ng}
 
-${voffset -30}${color}${if_match "${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradio}" == "NO"}${color #efefef}${font Ubuntu:pixelsize=14:bold}${else}${color #efefef}#${font Ubuntu:pixelsize=14:bold}Radiotray-ng app now playing:
-${voffset 10}${color #FFC433}${font Open Sans:size=10:bold}Station:${font}${color}  
+${voffset -19}${color}${if_match "${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradio}" == "NO"}${color #efefef}${font Ubuntu:pixelsize=14:bold}${else}${color #efefef}#${font Ubuntu:pixelsize=14:bold}Radiotray-ng app now playing:
 
-${font Open Sans:size=10:bold}${color #ffffff}${execi 10 qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state | jq -r '.station'}
+${voffset 0}${color #FFC433}${font Ubuntu:pixelsize=13:bold}Radio Station:${font}${color}  
 
-${voffset 15}${color #FFC433}${font Open Sans:size=10:bold}Artist & Title:${font}${color}
+${font Ubuntu:pixelsize=13:bold}${color #ffffff}${execi 10 qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state | jq -r '.station' | fold -s -w 17}
 
-${font Open Sans:size=10:bold}${color #ffffff}${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradioart | fold -s -w 40}${color}${image ~/.config/radiotray-ng/bookmark_icons/icon -p 130,25 -f 1}${endif}
-$else${color #696969}#${font Open Sans:size=10:bold}No activity${font}$endif
+${voffset 15}${if_existing /home/swipe/.conky/muted.png} ${image ~/.conky/muted.png -p 77,93 -s 35x35 -f 1}$endif${voffset 0}${if_match "${exec pidof -x toggle_mute3_rtng.sh}" != ""}${font Ubuntu:pixelsize=14:bold} ${execpi 1 cat ~/.conkytimer}${else}$endif
+${voffset 0}${color FFC433}${font Ubuntu:pixelsize=13:bold}Artist & Title:${font}${color}
 
-${voffset -13}${if_existing /home/swipe/.conky/muted.png}${image ~/.conky/muted.png -p 120,880 -s 35x35 -f 1}$endif
-${voffset -120}${font Open Sans:size=12:bold}${color}${if_match "${exec pidof -x toggle_mute3_rtng.sh}" != ""}${execpi 1 cat ~/.conkytimer}${else}$endif
-${voffset 0}${image ~/.conky/muted.png -p 93,70 -s 35x35 -f 1}${voffset 0}${font Open Sans:size=10:bold}#${execpi 1 cat ~/.conkytimer }
-${if_running wiimplay}${voffset -200}${endif}${if_running tidal-hifi}${voffset -200}${endif}
-${voffset -80}
+${font Ubuntu:pixelsize=12:bold}${color #ffffff}${execi 15 /home/swipe/.conky/conkyradiotray-ng/scriptradioart | fold -s -w 40}${color}${image ~/.config/radiotray-ng/bookmark_icons/icon -p 125,45 -f 1}${endif}
+$else${color #696969}${font Ubuntu:pixelsize=13:bold}#No activity${font}$endif
+${if_running tidal-hifi}${voffset -200}${endif}
+${voffset -30}

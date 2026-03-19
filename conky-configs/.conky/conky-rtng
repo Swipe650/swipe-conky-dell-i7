@@ -15,7 +15,7 @@ own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 double_buffer yes
 #default_bar_size 0 6
 
-#maximum_height 200
+maximum_height 200
 width 260
 minimum_size 250
 draw_shades no
@@ -30,7 +30,7 @@ alignment bottom_right
 #gap_x 10
 #gap_y 30
 gap_x 7
-gap_y 40
+gap_y 20
 no_buffers yes
 uppercase no
 cpu_avg_samples 2
@@ -43,20 +43,18 @@ TEXT
 # RADIOTRAY
 ${if_running radiotray-ng}
 
-${voffset -35}${color}${if_match "${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradio}" == "NO"}${color #efefef}${font Open Sans:size=10:bold}Radiotray-NG is not playing${else}${color #efefef}${font Open 
-Sans:size=10.5:bold}Radiotray-NG is playing:
-
+${voffset -30}${color}${if_match "${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradio}" == "NO"}${color #efefef}${font Ubuntu:pixelsize=14:bold}${else}${color #efefef}#${font Ubuntu:pixelsize=14:bold}Radiotray-ng app now playing:
 ${voffset 10}${color #FFC433}${font Open Sans:size=10:bold}Station:${font}${color}  
 
-${font Open Sans:size=9:bold}${color #ffffff}${execi 10 qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state | jq -r '.station'}
+${font Open Sans:size=10:bold}${color #ffffff}${execi 10 qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state | jq -r '.station'}
 
 ${voffset 15}${color #FFC433}${font Open Sans:size=10:bold}Artist & Title:${font}${color}
 
-${font Open Sans:size=9:bold}${color #ffffff}${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradioart | fold -s -w 40}${color}${image ~/.config/radiotray-ng/bookmark_icons/icon -p 125,45 -f 1}${endif}
-$else${color #696969}${font Open Sans:size=10:bold}No activity${font}$endif
+${font Open Sans:size=10:bold}${color #ffffff}${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradioart | fold -s -w 40}${color}${image ~/.config/radiotray-ng/bookmark_icons/icon -p 130,25 -f 1}${endif}
+$else${color #696969}#${font Open Sans:size=10:bold}No activity${font}$endif
 
-${voffset -7}${if_existing /home/swipe/.conky/muted.png}${image ~/.conky/muted.png -p 120,860 -s 40x40 -f 1}$endif
-${voffset -125}${font Open Sans:size=12:bold}${color}${if_match "${exec pidof -x toggle_mute3_rtng.sh}" != ""}${execpi 1 cat ~/.conkytimer}${else}$endif
-${image ~/.conky/muted.png -p 80,90 -s 40x40 -f 1}${voffset -210}${font Open Sans:size=10:bold}#${execpi 1 cat ~/.conkytimer }
-
-${voffset -140}
+${voffset -13}${if_existing /home/swipe/.conky/muted.png}${image ~/.conky/muted.png -p 120,880 -s 35x35 -f 1}$endif
+${voffset -120}${font Open Sans:size=12:bold}${color}${if_match "${exec pidof -x toggle_mute3_rtng.sh}" != ""}${execpi 1 cat ~/.conkytimer}${else}$endif
+${voffset 0}${image ~/.conky/muted.png -p 93,70 -s 35x35 -f 1}${voffset 0}${font Open Sans:size=10:bold}#${execpi 1 cat ~/.conkytimer }
+${if_running wiimplay}${voffset -200}${endif}${if_running tidal-hifi}${voffset -200}${endif}
+${voffset -80}

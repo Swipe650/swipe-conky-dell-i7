@@ -186,11 +186,11 @@ On_radioparadise_rock()
         echo "$rpsongtitle" >> ~/.conky/conkyradiotray-ng/onair.txt
 }
 
-On_radioparadise_rock()
+On_radioparadise_mellow()
 #Get what's on radio paradise and download cover artist
 {
         # Fetch JSON data from new API and save local copy
-        curl -o ~/.config/radiotray-ng/bookmark_icons/now.json "https://api.radioparadise.com/api/now_playing?chan=2"
+        curl -o ~/.config/radiotray-ng/bookmark_icons/now.json "https://api.radioparadise.com/api/now_playing?chan=1"
         
         # Extract cover_small URL from JSON
         chk_art=$(jq -r '.cover_small' ~/.config/radiotray-ng/bookmark_icons/now.json 2>/dev/null)
@@ -332,7 +332,7 @@ case "$station" in
     "$radio_paradise_rock" )
         On_radioparadise_rock
 ;;
-    "$radio_paradise_rock" )
+    "$radio_paradise_mellow" )
         On_radioparadise_mellow
 ;;
     #If status = 'not playing' don't do anything

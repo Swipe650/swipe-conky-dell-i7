@@ -341,16 +341,28 @@ case "$station" in
     #If any other case get albumart using miniatureGoogleImage
     *)
         #Check if albumart is already downloaded, if not, populate artist_title.txt with artist & song title, then download albumart and magick to icon and resize it
-        conkyspacer=" - "
-        conkytitle="$ar""$conkyspacer""$so"
         
-        if
-        [ "$title_read" != "$conkytitle" ];
-        then
+#         conkyspacer=" - "
+#         conkytitle="$ar""$conkyspacer""$so"
+#         
+#         if
+#         [ "$title_read" != "$conkytitle" ];
+#         then
         #echo "$title" | fold -s -w80 > ~/.conky/conkyradiotray-ng/artist_title.txt
-        echo "$ar" - "$so" | fold -s -w80 > ~/.conky/conkyradiotray-ng/artist_title.txt
-        wget -qO miniatureGoogleImage "$linkMiniature"
-        magick ~/miniatureGoogleImage -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        # echo "$ar" - "$so" | fold -s -w80 > ~/.conky/conkyradiotray-ng/artist_title.txt
+        # wget -O miniatureGoogleImage "$linkMiniature"
+        # magick ~/miniatureGoogleImage -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+        # fi
+        
+        # Generate a hash from the source data
+        new_hash=$(echo "$linkMiniature$ar$so" | md5sum | cut -d' ' -f1)
+        hash_file="/tmp/radiotray_hash"
+
+        if [ ! -f "$hash_file" ] || [ "$(cat $hash_file)" != "$new_hash" ]; then
+            echo "$ar" - "$so" | fold -s -w80 > ~/.conky/conkyradiotray-ng/artist_title.txt
+            wget -O miniatureGoogleImage "$linkMiniature"
+            magick ~/miniatureGoogleImage -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
+            echo "$new_hash" > "$hash_file"
         fi
 ;;
 esac
@@ -364,6 +376,15 @@ elif [ "$talkradio" = "$st" ] || [ "$playing" = "$so" ]
     then 
     conkytitle='No info'
     
+# else 
+#     conkytitle=$so
+#     conkyartist=$ar
+#     conkyspacer=" - "
+# fi
+# 
+# 
+# echo "$conkyartist""$conkyspacer""$conkytitle"
+
 else 
     conkyspacer=" - "
     conkytitle="$ar""$conkyspacer""$so"

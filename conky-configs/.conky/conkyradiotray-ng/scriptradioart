@@ -341,8 +341,11 @@ case "$station" in
     #If any other case get albumart using miniatureGoogleImage
     *)
         #Check if albumart is already downloaded, if not, populate artist_title.txt with artist & song title, then download albumart and magick to icon and resize it
+        conkyspacer=" - "
+        conkytitle="$ar""$conkyspacer""$so"
+        
         if
-        [ "$title_read" != "$title" ];
+        [ "$title_read" != "$conkytitle" ];
         then
         #echo "$title" | fold -s -w80 > ~/.conky/conkyradiotray-ng/artist_title.txt
         echo "$ar" - "$so" | fold -s -w80 > ~/.conky/conkyradiotray-ng/artist_title.txt
@@ -362,12 +365,13 @@ elif [ "$talkradio" = "$st" ] || [ "$playing" = "$so" ]
     conkytitle='No info'
     
 else 
-    conkytitle=$so
-    conkyartist=$ar
     conkyspacer=" - "
+    conkytitle="$ar""$conkyspacer""$so"
+    conkyartist=$ar
+    
 fi
 
 
-echo "$conkyartist""$conkyspacer""$conkytitle"
+echo "$conkytitle"
 
 exit 0

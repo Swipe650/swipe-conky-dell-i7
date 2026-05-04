@@ -19,10 +19,6 @@ On_LBC()
 # Get what's on LBC
         #Query if guest presenter schedule is empty
         onair=$(curl -s https://ukradiolive.com/lbc-97-3 | xmllint --html --nowarning --xpath '/html/body/div[1]/div[3]/div/div[2]/div[2]/div[3]/div[1]/div[6]/div[4]/div[2]/a' - | tail -c 61 | awk -F'[><]' '{print $2}') 
-        #if [[ -z "$onair" ]]; then
-        #Query normal presenter schedule
-        #onair=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div[1]/div[2]/p' - | tail -c 25 | awk -F'[><]' '{print $2}')
-        #fi
         onairtime=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div[1]/div[2]/span' - | tail -c 21 | awk -F'[><]' '{print $2}')
         #onairtime=$(curl -s https://ukradiolive.com/lbc-97-3 | xmllint --html --nowarning --xpath '' - | tail -c 21 | awk -F'[><]' '{print $2}')
         Onair_txt
@@ -40,9 +36,6 @@ On_LBC_News()
 On_GB_News()
 {
 # Get what's on LBC News
-        #onair=$(curl -s https://www.lbcnews.co.uk/ | xmllint --html --nowarning --xpath '//section/div/p/span/a//text()' - | tail -c 61)
-        # onair=$(curl -s https://www.lbcnews.co.uk/ | xmllint --html --nowarning --xpath '//section/div/p/span//text()' - | head -c 67)
-        # onairtime=$(curl -s https://www.lbcnews.co.uk/ | xmllint --html --nowarning --xpath '//section/div/p/span/text()' - | tail -c 25)
         onair=$(qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state | jq -r '.title')
         Onair_txt
 }
@@ -52,20 +45,7 @@ On_Talkradio()
 {
 # # # Get what's on Talkradio
          onair=$(curl -s https://talk.tv/radio-player-content | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[2]/div/span' - | tail -c 60 | awk -F'[><]' '{print $2}') #| sed 's/^Morning Glory with //')
-         #onairtime=$(curl -s https://talk.tv/play/talkradio | xmllint --html --nowarning --xpath '/html/body/main/div[1]/div[2]/div[2]/div[2]/div[2]/text()' - | tail -c 31 | cut -c 1-19) 
-         
-         # Check for BST or GMT
-#          if [ $(date +%Z) = "BST" ]
-#          then ST=1
-#          else ST=0
-#          fi
-         
-#          onairtime1=$(curl -s https://talk.tv/radio-player-content | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[1]/div/div/div[2]/div/span/text()' - | tail -c 31 | cut -c 1-8)
-#          onairtime2=$(curl -s https://talk.tv/radio-player-content | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[1]/div/div/div[2]/div/span/text()' - | tail -c 31 | cut -c 11-20)
-#          onairtime3=$(date -d "$onairtime1 +$ST hour" "+%l:%M%P")
-#          onairtime4=$(date -d "$onairtime2 +$ST hour" "+%l:%M%P") 
-#          onairtime="$onairtime3 "-" $onairtime4"
-        
+      
          onairtime=$(curl -s https://talk.tv/radio-player-content | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div/div/div/div/div/div[2]/div/div/div/div/div[1]/div/div/div[2]/div/span' - | tail -c 40 | awk -F'[><]' '{print $2}')
          Onair_txt
 }
@@ -248,8 +228,7 @@ status=''
 rp='Radio Paradise'
 artist=${so: -0}
 cadena=${st: -14}
-rpartist=$(awk -F '[<>]' '/artist/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml)
-rpsongtitle=$(awk -F '[<>]' '/title/{print $3}' ~/.config/radiotray-ng/bookmark_icons/now.xml)
+
 if [ "$artist" = "$status" ]; 
 then
 title='antenna tower icon white'
@@ -341,19 +320,6 @@ case "$station" in
     #If any other case get albumart using miniatureGoogleImage
     *)
         #Check if albumart is already downloaded, if not, populate artist_title.txt with artist & song title, then download albumart and magick to icon and resize it
-        
-#         conkyspacer=" - "
-#         conkytitle="$ar""$conkyspacer""$so"
-#         
-#         if
-#         [ "$title_read" != "$conkytitle" ];
-#         then
-        #echo "$title" | fold -s -w80 > ~/.conky/conkyradiotray-ng/artist_title.txt
-        # echo "$ar" - "$so" | fold -s -w80 > ~/.conky/conkyradiotray-ng/artist_title.txt
-        # wget -O miniatureGoogleImage "$linkMiniature"
-        # magick ~/miniatureGoogleImage -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon
-        # fi
-        
         # Generate a hash from the source data
         new_hash=$(echo "$linkMiniature$ar$so" | md5sum | cut -d' ' -f1)
         hash_file="/tmp/radiotray_hash"
@@ -376,15 +342,6 @@ elif [ "$talkradio" = "$st" ] || [ "$playing" = "$so" ]
     then 
     conkytitle='No info'
     
-# else 
-#     conkytitle=$so
-#     conkyartist=$ar
-#     conkyspacer=" - "
-# fi
-# 
-# 
-# echo "$conkyartist""$conkyspacer""$conkytitle"
-
 else 
     conkyspacer=" - "
     conkytitle="$ar""$conkyspacer""$so"

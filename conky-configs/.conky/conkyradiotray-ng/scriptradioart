@@ -292,7 +292,7 @@ case "$station" in
         
 ;;
     "$bloomr" )
-        magick ~/.config/radiotray-ng/bookmark_icons/br -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon    
+        magick ~/.config/radiotray-ng/bookmark_icons/br.png -resize 110 ~/.config/radiotray-ng/bookmark_icons/icon    
 ;;
     "$radio_paradise" )
         On_radioparadise

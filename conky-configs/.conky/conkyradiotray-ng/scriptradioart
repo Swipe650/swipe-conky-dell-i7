@@ -18,7 +18,8 @@ On_LBC()
 {
 # Get what's on LBC
         #Query if guest presenter schedule is empty
-        onair=$(curl -s https://ukradiolive.com/lbc-97-3 | xmllint --html --nowarning --xpath '/html/body/div[1]/div[3]/div/div[2]/div[2]/div[3]/div[1]/div[6]/div[4]/div[2]/a' - | tail -c 61 | awk -F'[><]' '{print $2}') 
+        #onair=$(curl -s https://ukradiolive.com/lbc-97-3 | xmllint --html --nowarning --xpath '/html/body/div[1]/div[3]/div/div[2]/div[2]/div[3]/div[1]/div[6]/div[4]/div[2]/a' - | tail -c 61 | awk -F'[><]' '{print $2}') 
+        onair="$so"
         onairtime=$(curl -s https://www.lbc.co.uk | xmllint --html --nowarning --xpath '/html/body/div[1]/div/div[1]/div[2]/span' - | tail -c 21 | awk -F'[><]' '{print $2}')
         #onairtime=$(curl -s https://ukradiolive.com/lbc-97-3 | xmllint --html --nowarning --xpath '' - | tail -c 21 | awk -F'[><]' '{print $2}')
         Onair_txt
@@ -28,7 +29,8 @@ On_LBC_News()
 {
 # Get what's on LBC News
         #onair=$(curl -s https://www.lbcnews.co.uk/ | xmllint --html --nowarning --xpath '//section/div/p/span/a//text()' - | tail -c 61)
-        onair=$(curl -s https://www.lbcnews.co.uk/ | xmllint --html --nowarning --xpath '//section/div/p/span//text()' - | head -c 67)
+        #onair=$(curl -s https://www.lbcnews.co.uk/ | xmllint --html --nowarning --xpath '//section/div/p/span//text()' - | head -c 67)
+        onair="$so"
         onairtime=$(curl -s https://www.lbcnews.co.uk/ | xmllint --html --nowarning --xpath '//section/div/p/span/text()' - | tail -c 25)
         Onair_txt
 }

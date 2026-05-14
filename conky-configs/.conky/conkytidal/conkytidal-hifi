@@ -52,8 +52,8 @@ ${voffset -13}${goto 73}${color2}              ${exec ~/.conky/conkytidal/tidal_
 ${voffset -160}
 ${exec ~/.conky/conkytidal/tidal_album_cover_hifi 2>/dev/null}
 ${image ~/.conky/conkytidal/last_album_pic.png -p 0,53 -s 60x60}
-${else}${voffset -5}${color #696969}${font Liberation Sans:style=Bold:size=8}Tidal: Not playing or not responding${font}${color}${voffset 110}
+#${else}${voffset -5}${color #696969}${font Liberation Sans:style=Bold:size=8}Tidal: Not playing or not responding${font}${color}${voffset 110}
 ${endif}
-${else}${voffset -5}${color #696969}${font Liberation Sans:style=Bold:size=8}Tidal: Not running${font}${color}${voffset 110}
+#${else}${voffset -5}${color #696969}${font Liberation Sans:style=Bold:size=8}Tidal: Not running${font}${color}${voffset 110}
 ${endif}
 ${voffset 110}

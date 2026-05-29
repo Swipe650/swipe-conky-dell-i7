@@ -1,11 +1,30 @@
 #!/bin/bash
 
-first_cover=""
+# Paths
+COVER_DIR="$HOME/.conky/conkytidal"
+LAST_URL_FILE="$COVER_DIR/.last_cover_url"
+TEMP_PNG="$COVER_DIR/last_album_pic.tmp"
+FINAL_PNG="$COVER_DIR/last_album_pic.png"
 
-	new_cover=`playerctl metadata --format '{{ mpris:artUrl }}'`
-	if [ "$new_cover" != "$first_cover" ]
-	then
-		first_cover="$new_cover"
-		convert $new_cover ~/.conky/conkytidal/last_album_pic.png
-	fi
-	sleep 1
+# Get current album art URL from playerctl
+new_cover=$(playerctl --player=wiimplay metadata --format '{{ mpris:artUrl }}')
+
+# Read previously stored URL (if any)
+if [[ -f "$LAST_URL_FILE" ]]; then
+    old_cover=$(cat "$LAST_URL_FILE")
+else
+    old_cover=""
+fi
+
+# Only update if the URL changed and is not empty
+if [[ -n "$new_cover" && "$new_cover" != "$old_cover" ]]; then
+    # Download and convert to temp file
+    if convert "$new_cover" "$TEMP_PNG" 2>/dev/null; then
+        # Atomic move: rename completes instantly once conversion is done
+        mv "$TEMP_PNG" "$FINAL_PNG"
+        echo "$new_cover" > "$LAST_URL_FILE"
+    else
+        # Conversion failed – clean up temp file if it exists
+        rm -f "$TEMP_PNG"
+    fi
+fi

@@ -9,6 +9,6 @@ first_cover=""
 	if [ "$new_cover" != "$first_cover" ]
 	then
 		first_cover="$new_cover"
-		magick $new_cover ~/.conky/conkytidal/last_album_pic.png
+		magick $new_cover ~/.conky/conkytidal-hifi/last_album_pic.png
 	fi
 	sleep 1

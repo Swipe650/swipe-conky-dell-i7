@@ -1,57 +1,54 @@
-# background yes
-use_xft yes
-xftfont Monospace:size=8
-xftalpha 0.5
-update_interval 1
-total_run_times 0
-own_window yes
-own_window_type normal
-#own_window_type dock
-#own_window_transparent yes
-own_window_argb_visual yes
-own_window_argb_value 20
-own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
-#own_window_hints decorated,below,sticky,skip_taskbar,skip_pager
-double_buffer yes
-#default_bar_size 0 6
+conky.config = {
+    output_backend = 'x11',
 
-#maximum_height 200
-width 260
-minimum_size 250
-draw_shades no
-draw_outline no
-draw_borders no
-draw_graph_borders yes
-default_color white
-default_shade_color red
-default_outline_color green
-#alignment top_left
-alignment bottom_right
-gap_x 7
-gap_y 50
-no_buffers yes
-uppercase no
-cpu_avg_samples 2
-net_avg_samples 2
-override_utf8_locale yes
-#use_spacer no
+    use_xft = true,
+    xftfont = 'Monospace:size=8',
+    xftalpha = 0.5,
 
-TEXT
+    update_interval = 1,
+    total_run_times = 0,
 
-# RADIOTRAY
-${if_running radiotray-ng}
-${if_match "${execi 10 bash -c 'timeout 1 qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state 2>/dev/null | grep -q . && echo YES || echo NO'}" == "YES"}
+    own_window = true,
+    own_window_type = 'normal',
+    own_window_argb_visual = true,
+    own_window_argb_value = 20,
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
 
-${voffset -19}${color}${if_match "${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradio 2>/dev/null}" == "NO"}${color #efefef}${font Ubuntu:pixelsize=13:bold}${else}${color #efefef}#${font Ubuntu:pixelsize=13:bold}Radiotray-ng app now playing:
+    double_buffer = true,
 
-${voffset 0}${color #FFC433}${font Ubuntu:pixelsize=13:bold}Radio Station:${font}${color}  
+    maximum_width = 280,
+    minimum_width = 280, 0,
+    
+    draw_shades = false,
+    draw_outline = false,
+    draw_borders = false,
+    draw_graph_borders = true,
 
+    default_color = 'white',
+    default_shade_color = 'red',
+    default_outline_color = 'green',
+
+    alignment = 'bottom_right',
+    gap_x = 0,
+    gap_y = 0,
+
+    no_buffers = true,
+    uppercase = false,
+    cpu_avg_samples = 2,
+    net_avg_samples = 2,
+    override_utf8_locale = true
+}
+
+conky.text = [[
+${if_running radiotray-ng}${if_match "${execi 10 bash -c 'timeout 1 qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state 2>/dev/null | grep -q . && echo YES || echo NO'}" == "YES"}${voffset -19}${color}${if_match "${execi 10 /home/swipe/.conky/conkyradiotray-ng/scriptradio 2>/dev/null}" == "NO"}${color #efefef}${font Ubuntu:pixelsize=13:bold}${else}${color #efefef}#${font Ubuntu:pixelsize=13:bold}Radiotray-ng app now playing:
+
+${voffset 0}${color #FFC433}${font Ubuntu:pixelsize=13:bold}Radio Station:${font}${color}
 ${font Ubuntu:pixelsize=13:bold}${color #ffffff}${execi 10 bash -c 'qdbus com.github.radiotray_ng /com/github/radiotray_ng com.github.radiotray_ng.get_player_state 2>/dev/null | jq -r ".station" 2>/dev/null | fold -s -w 17'}
 
-${voffset 15}${if_existing /home/swipe/.conky/muted.png} ${image ~/.conky/muted.png -p 77,109 -s 35x35 -f 1}$endif${voffset 0}${if_match "${exec pidof -x toggle_mute3_rtng.sh}" != ""}${font Ubuntu:pixelsize=13:bold} ${execpi 1 cat ~/.conkytimer}${else}$endif
+${voffset -0}${if_existing /home/swipe/.conky/muted.png}${image ~/.conky/muted.png -p 100,53 -s 35x35 -f 1}$endif${voffset 10}${if_match "${exec pidof -x toggle_mute3_rtng.sh}" != ""}${font Ubuntu:pixelsize=13:bold} ${execpi 1 cat ~/.conkytimer}${else}$endif
 ${voffset 15}${color FFC433}${font Ubuntu:pixelsize=13:bold}Artist & Title:${font}${color}
-
-${font Ubuntu:pixelsize=13:bold}${color #ffffff}${execi 15 bash -c '/home/swipe/.conky/conkyradiotray-ng/scriptradioart 2>/dev/null | fold -s -w 40'}${color}${image ~/.config/radiotray-ng/bookmark_icons/icon -p 125,65 -f 1}${endif}
+${font Ubuntu:pixelsize=13:bold}${color #ffffff}${execi 15 bash -c '/home/swipe/.conky/conkyradiotray-ng/scriptradioart 2>/dev/null | fold -s -w 40'}${color}${image ~/.config/radiotray-ng/bookmark_icons/icon -p 145,15 -f 1}$endif
 $else${color #696969}${font Ubuntu:pixelsize=13:bold}#No activity${font}$endif
-${if_running tidal-hifi}${voffset -200}${endif}
-${voffset -30}
+${if_running tidal-hifi}${voffset -200}$endif
+${voffset -10}$endif
+]]

@@ -30,7 +30,7 @@ conky.config = {
 
     alignment = 'bottom_right',
     gap_x = 0,
-    gap_y = 0,
+    gap_y = 40,
 
     no_buffers = true,
     uppercase = false,
@@ -49,6 +49,6 @@ ${voffset -0}${if_existing /home/swipe/.conky/muted.png}${image ~/.conky/muted.p
 ${voffset 15}${color FFC433}${font Ubuntu:pixelsize=13:bold}Artist & Title:${font}${color}
 ${font Ubuntu:pixelsize=13:bold}${color #ffffff}${execi 15 bash -c '/home/swipe/.conky/conkyradiotray-ng/scriptradioart 2>/dev/null | fold -s -w 40'}${color}${image ~/.config/radiotray-ng/bookmark_icons/icon -p 145,15 -f 1}$endif
 $else${color #696969}${font Ubuntu:pixelsize=13:bold}#No activity${font}$endif
+${voffset 0}$endif
 ${if_running tidal-hifi}${voffset -200}$endif
-${voffset -10}$endif
 ]]
